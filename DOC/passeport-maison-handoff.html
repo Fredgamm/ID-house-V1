@@ -1,0 +1,1269 @@
+<!doctype html>
+<title>Passeport Maison — Dossier de passation</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F0F4F8;
+  --surface:#FFFFFF;
+  --surface-alt:#F1F5F9;
+  --border:#DDE3ED;
+  --primary:#2563EB;
+  --primary-l:#EFF6FF;
+  --primary-d:#1D4ED8;
+  --text:#0F172A;
+  --t2:#475569;
+  --t3:#94A3B8;
+  --fix:#DC2626;--fix-bg:#FEE2E2;
+  --mob:#7C3AED;--mob-bg:#EDE9FE;
+  --pro:#16A34A;--pro-bg:#DCFCE7;
+  --warn:#D97706;--warn-bg:#FEF3C7;
+  --code-bg:#0F172A;
+  --r:10px;
+  --sidebar:256px;
+  --font:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  --mono:'SF Mono','Cascadia Code','Consolas','Fira Code',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:15px;line-height:1.6;min-height:100vh}
+
+/* ── LAYOUT ── */
+.layout{display:grid;grid-template-columns:var(--sidebar) 1fr;min-height:100vh;max-width:1200px;margin:0 auto}
+
+/* ── SIDEBAR ── */
+.sidebar{position:sticky;top:0;height:100vh;overflow-y:auto;padding:28px 0 40px;background:var(--surface);border-right:1px solid var(--border)}
+.sidebar::-webkit-scrollbar{width:4px}
+.sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.sb-logo{padding:0 20px 20px;border-bottom:1px solid var(--border);margin-bottom:12px}
+.sb-logo-mark{display:flex;align-items:center;gap:8px;text-decoration:none}
+.sb-icon{width:30px;height:30px;background:var(--primary);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.sb-name{font-size:14px;font-weight:700;color:var(--text);line-height:1.2}
+.sb-tag{font-size:10px;color:var(--t3);font-weight:500;margin-top:1px}
+.sb-section{padding:6px 20px 3px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--t3);margin-top:8px}
+.sb-link{display:block;padding:6px 20px;font-size:13px;color:var(--t2);text-decoration:none;border-left:2px solid transparent;transition:all .12s}
+.sb-link:hover{color:var(--text);background:var(--surface-alt)}
+.sb-link.active{color:var(--primary);border-left-color:var(--primary);background:var(--primary-l);font-weight:500}
+.sb-badge{display:inline-block;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:6px;vertical-align:middle}
+
+/* ── MAIN ── */
+.main{padding:40px 48px 80px;max-width:860px}
+
+/* ── PAGE HEADER ── */
+.page-header{margin-bottom:40px;padding-bottom:28px;border-bottom:1px solid var(--border)}
+.page-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--primary);margin-bottom:10px}
+.page-title{font-size:32px;font-weight:800;color:var(--text);line-height:1.2;text-wrap:balance;margin-bottom:10px}
+.page-meta{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--t2)}
+.meta-chip{display:flex;align-items:center;gap:5px}
+.meta-dot{width:6px;height:6px;border-radius:3px;background:var(--primary);flex-shrink:0}
+
+/* ── SECTIONS ── */
+.section{margin-bottom:52px}
+.section-header{margin-bottom:20px}
+.section-number{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--t3);margin-bottom:4px}
+.section-title{font-size:22px;font-weight:800;color:var(--text);text-wrap:balance}
+.section-desc{font-size:14px;color:var(--t2);margin-top:6px;line-height:1.6}
+
+/* ── CARDS ── */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:12px}
+.card-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px}
+.card-sub{font-size:13px;color:var(--t2);line-height:1.5}
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+
+/* ── EPIC CARDS ── */
+.epic{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:16px}
+.epic-header{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;background:var(--surface-alt)}
+.epic-icon{font-size:18px}
+.epic-title{font-size:14px;font-weight:700;color:var(--text)}
+.epic-count{margin-left:auto;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;background:var(--primary-l);color:var(--primary)}
+.us-list{list-style:none}
+.us-item{padding:11px 18px;border-bottom:1px solid var(--border);font-size:13px;color:var(--t2);line-height:1.5;display:flex;gap:10px}
+.us-item:last-child{border-bottom:none}
+.us-id{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--t3);flex-shrink:0;padding-top:1px;min-width:44px}
+.us-text strong{color:var(--text);font-weight:600}
+
+/* ── JOURNEY ── */
+.journey{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:20px}
+.journey-header{padding:14px 18px;background:var(--primary);color:#fff;display:flex;align-items:center;gap:10px}
+.journey-title{font-size:14px;font-weight:700}
+.journey-persona{font-size:12px;opacity:.8;margin-left:auto}
+.journey-steps{padding:18px}
+.step-row{display:flex;gap:0;margin-bottom:0}
+.step{flex:1;position:relative}
+.step-connector{position:absolute;top:16px;left:50%;right:-50%;height:2px;background:var(--border);z-index:0}
+.step:last-child .step-connector{display:none}
+.step-dot{width:32px;height:32px;border-radius:16px;background:var(--primary-l);border:2px solid var(--primary);display:flex;align-items:center;justify-content:center;font-size:13px;margin:0 auto 8px;position:relative;z-index:1}
+.step-label{font-size:11px;color:var(--t2);text-align:center;line-height:1.4;padding:0 4px}
+.step-screen{font-size:10px;color:var(--t3);text-align:center;font-family:var(--mono);margin-top:2px}
+
+/* ── SCREEN INVENTORY ── */
+.screen-table{width:100%;border-collapse:collapse;font-size:13px}
+.screen-table th{text-align:left;padding:9px 12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--t3);background:var(--surface-alt);border-bottom:2px solid var(--border)}
+.screen-table td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top;color:var(--t2)}
+.screen-table tr:last-child td{border-bottom:none}
+.screen-table tr:hover td{background:#FAFBFD}
+.screen-name{font-weight:600;color:var(--text);font-family:var(--mono);font-size:12px}
+.table-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;overflow-x:auto;margin-bottom:20px}
+
+/* ── BADGES ── */
+.badge{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:5px;font-size:11px;font-weight:600;white-space:nowrap}
+.b-fix{background:var(--fix-bg);color:var(--fix)}
+.b-mob{background:var(--mob-bg);color:var(--mob)}
+.b-pro{background:var(--pro-bg);color:var(--pro)}
+.b-blue{background:var(--primary-l);color:var(--primary)}
+.b-grey{background:#F1F5F9;color:#475569}
+.b-warn{background:var(--warn-bg);color:var(--warn)}
+
+/* ── CODE ── */
+pre{background:var(--code-bg);color:#E2E8F0;border-radius:var(--r);padding:18px;font-family:var(--mono);font-size:12px;line-height:1.7;overflow-x:auto;margin-bottom:16px}
+pre::-webkit-scrollbar{height:4px}
+pre::-webkit-scrollbar-thumb{background:#334155;border-radius:2px}
+.kw{color:#93C5FD}
+.str{color:#86EFAC}
+.cmt{color:#475569}
+.tp{color:#FCA5A5}
+.num{color:#FCD34D}
+.fn{color:#C4B5FD}
+
+/* ── STACK ── */
+.stack-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.stack-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px}
+.stack-role{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--t3);margin-bottom:4px}
+.stack-name{font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px}
+.stack-detail{font-size:12px;color:var(--t2)}
+
+/* ── SCOPE BOX ── */
+.scope-box{border-radius:var(--r);padding:16px 18px;margin-bottom:12px;border:1.5px solid}
+.scope-in{border-color:#BBF7D0;background:#F0FDF4}
+.scope-in .scope-title{color:#15803D;font-size:13px;font-weight:700;margin-bottom:8px}
+.scope-out{border-color:#FECACA;background:#FFF5F5}
+.scope-out .scope-title{color:#DC2626;font-size:13px;font-weight:700;margin-bottom:8px}
+.scope-list{list-style:none;font-size:13px;color:var(--t2)}
+.scope-list li{padding:3px 0;padding-left:16px;position:relative}
+.scope-list li::before{content:'';position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:3px}
+.scope-in .scope-list li::before{background:#16A34A}
+.scope-out .scope-list li::before{background:#DC2626}
+
+/* ── DIVIDER ── */
+.divider{height:1px;background:var(--border);margin:40px 0}
+
+/* ── INLINE CODE ── */
+code{font-family:var(--mono);font-size:12px;background:var(--surface-alt);border:1px solid var(--border);padding:1px 5px;border-radius:4px;color:var(--primary-d)}
+
+/* ── ROUTE LIST ── */
+.route-group{margin-bottom:16px}
+.route-group-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--t3);padding:8px 0 5px;border-bottom:1px solid var(--border);margin-bottom:8px}
+.route-row{display:flex;align-items:baseline;gap:10px;padding:6px 0;border-bottom:1px solid #F1F5F9;font-size:13px}
+.route-method{font-family:var(--mono);font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;min-width:42px;text-align:center}
+.get{background:#DBEAFE;color:#1D4ED8}
+.post{background:#DCFCE7;color:#15803D}
+.put{background:#FEF3C7;color:#D97706}
+.del{background:#FEE2E2;color:#DC2626}
+.route-path{font-family:var(--mono);font-size:12px;color:var(--text);font-weight:600;flex-shrink:0}
+.route-desc{color:var(--t2);flex:1}
+
+/* ── DB SCHEMA ── */
+.model-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:12px}
+.model-header{padding:10px 14px;background:var(--code-bg);display:flex;align-items:center;gap:8px}
+.model-name{font-family:var(--mono);font-size:13px;font-weight:700;color:#93C5FD}
+.model-desc{font-size:12px;color:#475569;margin-left:auto}
+.model-fields{font-family:var(--mono);font-size:12px;padding:12px 14px;line-height:1.8}
+.field-row{display:flex;gap:12px}
+.field-name{color:var(--text);min-width:160px}
+.field-type{color:#7C3AED;min-width:100px}
+.field-mod{color:#94A3B8;font-size:11px}
+.field-pk{color:#FBBF24}
+
+/* ── NOTE BOX ── */
+.note{background:var(--warn-bg);border:1.5px solid #FDE68A;border-radius:var(--r);padding:13px 16px;font-size:13px;color:#92400E;line-height:1.5;margin-bottom:16px}
+.note strong{color:#78350F}
+.info-note{background:var(--primary-l);border:1.5px solid #BFDBFE;border-radius:var(--r);padding:13px 16px;font-size:13px;color:#1E40AF;line-height:1.5;margin-bottom:16px}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{display:none}
+  .main{padding:24px 20px 60px}
+  .card-grid,.card-grid-3,.stack-grid{grid-template-columns:1fr}
+}
+</style>
+
+<div class="layout">
+
+<!-- ══════════════════════════ SIDEBAR ══════════════════════════ -->
+<nav class="sidebar">
+  <div class="sb-logo">
+    <a class="sb-logo-mark" href="#top">
+      <div class="sb-icon">🏠</div>
+      <div>
+        <div class="sb-name">Passeport Maison</div>
+        <div class="sb-tag">Dossier de passation · V1</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="sb-section">Projet</div>
+  <a class="sb-link" href="#vision">Vision & contexte</a>
+  <a class="sb-link" href="#scope">Périmètre V1</a>
+  <a class="sb-link" href="#personas">Personas</a>
+
+  <div class="sb-section">Fonctionnel</div>
+  <a class="sb-link" href="#user-stories">User stories <span class="sb-badge" style="background:var(--primary-l);color:var(--primary)">51</span></a>
+  <a class="sb-link" href="#journeys">Parcours utilisateurs</a>
+  <a class="sb-link" href="#screens">Inventaire des écrans</a>
+
+  <div class="sb-section">Technique</div>
+  <a class="sb-link" href="#stack">Stack technique</a>
+  <a class="sb-link" href="#routes">Routes SvelteKit</a>
+  <a class="sb-link" href="#api">API endpoints</a>
+  <a class="sb-link" href="#schema">Modèle de données</a>
+  <a class="sb-link" href="#realtime">Temps réel (SSE)</a>
+
+  <div class="sb-section">Référence</div>
+  <a class="sb-link" href="#hors-scope">Hors périmètre</a>
+  <a class="sb-link" href="#assets">Livrables</a>
+</nav>
+
+<!-- ══════════════════════════ MAIN ══════════════════════════ -->
+<main class="main" id="top">
+
+  <!-- PAGE HEADER -->
+  <header class="page-header">
+    <div class="page-eyebrow">Dossier de passation développeur</div>
+    <h1 class="page-title">Passeport Maison</h1>
+    <div class="page-meta">
+      <div class="meta-chip"><div class="meta-dot"></div>Version 1.0</div>
+      <div class="meta-chip"><div class="meta-dot" style="background:#16A34A"></div>Juin 2026</div>
+      <div class="meta-chip"><div class="meta-dot" style="background:#7C3AED"></div>SvelteKit + PostgreSQL</div>
+      <div class="meta-chip"><div class="meta-dot" style="background:#D97706"></div>Mobile-first · 390px</div>
+    </div>
+  </header>
+
+  <!-- ═══ 1. VISION ═══ -->
+  <section class="section" id="vision">
+    <div class="section-header">
+      <div class="section-number">01 — Vision & contexte</div>
+      <h2 class="section-title">Qu'est-ce que Passeport Maison ?</h2>
+      <p class="section-desc">Application mobile permettant aux propriétaires de documenter, valoriser et partager leur bien immobilier. Elle centralise le plan 2D/3D, les équipements, les matériaux et génère une fiche technique partageable.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-title">Le problème résolu</div>
+        <div class="card-sub">Quand on vend ou loue un bien, il est impossible de prouver la valeur de ses équipements et rénovations. Les acheteurs ne savent pas ce qu'ils achètent, les propriétaires ne peuvent pas justifier leur prix.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">La solution</div>
+        <div class="card-sub">Un "carnet d'entretien numérique" avec plan interactif, inventaire des équipements et fiche technique partageable selon le profil du destinataire (acheteur, locataire, artisan).</div>
+      </div>
+    </div>
+
+    <div class="card-grid-3">
+      <div class="card">
+        <div class="card-title">Cible principale</div>
+        <div class="card-sub">Propriétaires qui envisagent de vendre ou louer leur bien dans les 6 à 24 mois.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Cible secondaire</div>
+        <div class="card-sub">Artisans et fournisseurs qui souhaitent promouvoir leurs services auprès de propriétaires qualifiés.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Modèle économique</div>
+        <div class="card-sub">Freemium : accès gratuit limité. Offre Pro débloque le coffre-fort documents, le rendu 3D réaliste et les fonctionnalités avancées.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 2. SCOPE ═══ -->
+  <section class="section" id="scope">
+    <div class="section-header">
+      <div class="section-number">02 — Périmètre V1</div>
+      <h2 class="section-title">Ce qui est dans scope</h2>
+      <p class="section-desc">Le périmètre est défini par les 32 écrans de <code>DOC/wireframes.html</code>. Tout ce qui n'y figure pas est hors scope V1.</p>
+    </div>
+
+    <div class="scope-box scope-in">
+      <div class="scope-title">✅ Dans le scope V1</div>
+      <ul class="scope-list">
+        <li>Authentification magic link (sans mot de passe)</li>
+        <li>Onboarding 5 slides + création du logement</li>
+        <li>Éditeur de plan 2D/3D (open3dFloorplan intégré)</li>
+        <li>Saisie rapide des pièces avec compteurs et dimensions</li>
+        <li>Inventaire des équipements : IA photo, scan code-barre, saisie manuelle</li>
+        <li>Deux types d'équipement : Fixe (valorisation) et Mobilier (vente)</li>
+        <li>Dashboard : valeur documentée du bien + miniature plan</li>
+        <li>Galerie photo regroupée par pièce</li>
+        <li>Fiche technique : partage multi-profil (acheteur, locataire, artisan)</li>
+        <li>Export PDF / JSON / DXF</li>
+        <li>Marketplace : annonces particuliers + catalogue pros</li>
+        <li>Mise en vente d'un équipement mobilier depuis le passeport</li>
+        <li>Messagerie temps réel (SSE) acheteur ↔ vendeur</li>
+        <li>Annuaire artisans & fournisseurs avec filtre géographique</li>
+        <li>Profil utilisateur + gestion des annonces actives</li>
+        <li>Freemium : mur payant + upgrade modal</li>
+        <li>Coffre-fort documents (Pro)</li>
+        <li>Rendu 3D réaliste (Pro)</li>
+        <li>Espace Pro artisan : inscription, validation, dashboard, catalogue</li>
+      </ul>
+    </div>
+
+    <div class="scope-box scope-out">
+      <div class="scope-title">🚫 Hors scope V1 (ne pas implémenter)</div>
+      <ul class="scope-list">
+        <li>Estimation / devis travaux de construction ou de rénovation</li>
+        <li>Paiement en ligne pour les transactions marketplace</li>
+        <li>Notifications push (uniquement badge dans l'app)</li>
+        <li>Application multi-logements (V1 = 1 logement par compte)</li>
+        <li>Synchronisation Apple RoomPlan (import prévu mais non fonctionnel en V1)</li>
+        <li>Mode démo (remplacé par l'onboarding)</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 3. PERSONAS ═══ -->
+  <section class="section" id="personas">
+    <div class="section-header">
+      <div class="section-number">03 — Personas</div>
+      <h2 class="section-title">Qui utilise l'application ?</h2>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <div style="font-size:28px;margin-bottom:10px">👤</div>
+        <div class="card-title">Martin — Le propriétaire vendeur</div>
+        <div class="card-sub" style="margin-top:6px">42 ans, ingénieur. Vend sa maison dans 18 mois. Veut documenter sa rénovation pour justifier son prix et rassurer les acheteurs. Utilise l'app sur iPhone.</div>
+        <div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap">
+          <span class="badge b-blue">Propriétaire</span>
+          <span class="badge b-grey">Vendeur</span>
+        </div>
+      </div>
+      <div class="card">
+        <div style="font-size:28px;margin-bottom:10px">🏪</div>
+        <div class="card-title">Sophie — L'acheteuse curieuse</div>
+        <div class="card-sub" style="margin-top:6px">35 ans, architecte. Consulte le passeport partagé avant une visite. N'a pas de compte. Accède à la fiche technique via un lien public.</div>
+        <div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap">
+          <span class="badge b-grey">Visiteur</span>
+          <span class="badge b-mob">Acheteur</span>
+        </div>
+      </div>
+      <div class="card">
+        <div style="font-size:28px;margin-bottom:10px">🔧</div>
+        <div class="card-title">Maxime — L'artisan Pro</div>
+        <div class="card-sub" style="margin-top:6px">Plombier indépendant, 10 ans d'expérience. Veut être référencé sur la plateforme pour recevoir des leads qualifiés. Gère son catalogue de produits depuis l'app.</div>
+        <div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap">
+          <span class="badge b-pro">Artisan Pro</span>
+          <span class="badge b-grey">Fournisseur</span>
+        </div>
+      </div>
+      <div class="card">
+        <div style="font-size:28px;margin-bottom:10px">🛋️</div>
+        <div class="card-title">Julie — L'acheteuse de seconde main</div>
+        <div class="card-sub" style="margin-top:6px">28 ans, étudiante. Cherche des équipements d'occasion certifiés par leur passeport. Apprécie la transparence sur l'état et l'origine des articles.</div>
+        <div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap">
+          <span class="badge b-mob">Acheteur</span>
+          <span class="badge b-grey">Marketplace</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 4. USER STORIES ═══ -->
+  <section class="section" id="user-stories">
+    <div class="section-header">
+      <div class="section-number">04 — User stories</div>
+      <h2 class="section-title">51 user stories · 11 epics</h2>
+      <p class="section-desc">Chaque story suit le format : <em>"En tant que [persona], je peux [action] afin de [bénéfice]."</em></p>
+    </div>
+
+    <!-- EPIC 1 -->
+    <div class="epic">
+      <div class="epic-header"><div class="epic-icon">🔐</div><div class="epic-title">Epic 1 — Authentification</div><div class="epic-count">3 stories</div></div>
+      <ul class="us-list">
+        <li class="us-item"><span class="us-id">US-01</span><span>En tant que <strong>visiteur</strong>, je peux créer un compte avec mon adresse email (sans mot de passe) pour accéder à l'application. Un lien de connexion unique valable 15 minutes m'est envoyé par email.</span></li>
+        <li class="us-item"><span class="us-id">US-02</span><span>En tant qu'<strong>utilisateur existant</strong>, je peux me reconnecter via un nouveau magic link si ma session a expiré.</span></li>
+        <li class="us-item"><span class="us-id">US-03</span><span>En tant qu'<strong>utilisateur</strong>, je peux me déconnecter depuis mon écran Profil pour fermer ma session de manière sécurisée.</span></li>
+      </ul>
+    </div>
+
+    <!-- EPIC 2 -->
+    <div class="epic">
+      <div class="epic-header"><div class="epic-icon">🏗️</div><div class="epic-title">Epic 2 — Onboarding & Création du bien</div><div class="epic-count">5 stories</div></div>
+      <ul class="us-list">
+        <li class="us-item"><span class="us-id">US-04</span><span>En tant que <strong>nouvel utilisateur</strong>, je vois un onboarding de 5 slides qui présente les fonctionnalités clés (plan, équipements, valorisation, marketplace, partage). Je peux le passer à tout moment.</span></li>
+        <li class="us-item"><span class="us-id">US-05</span><span>En tant qu'<strong>utilisateur</strong>, je peux créer mon logement en renseignant son nom, son type (maison, appartement, bureau…), le nombre d'étages, la surface, l'année de construction et une adresse optionnelle.</span></li>
+        <li class="us-item"><span class="us-id">US-06</span><span>En tant qu'<strong>utilisateur</strong>, je choisis parmi 3 méthodes pour créer mon plan : éditeur interactif 2D/3D (recommandé), saisie rapide par compteurs, ou import d'un plan existant.</span></li>
+        <li class="us-item"><span class="us-id">US-07</span><span>En tant qu'<strong>utilisateur</strong> en saisie rapide, je peux ajuster le nombre de pièces par type (salon, chambre, cuisine, salle de bain, WC, bureau, couloir, garage…) avec des compteurs + / −.</span></li>
+        <li class="us-item"><span class="us-id">US-08</span><span>En tant qu'<strong>utilisateur</strong> en saisie rapide, je peux configurer les dimensions (largeur × longueur) et le nom de chaque pièce, avec calcul automatique de la surface en m².</span></li>
+      </ul>
+    </div>
+
+    <!-- EPIC 3 -->
+    <div class="epic">
+      <div class="epic-header"><div class="epic-icon">📐</div><div class="epic-title">Epic 3 — Éditeur de plan</div><div class="epic-count">5 stories</div></div>
+      <ul class="us-list">
+        <li class="us-item"><span class="us-id">US-09</span><span>En tant qu'<strong>utilisateur</strong>, je peux dessiner mon plan en 2D avec l'éditeur open3dFloorplan (tracé vectoriel des murs, des pièces, placement des portes, fenêtres et équipements).</span></li>
+        <li class="us-item"><span class="us-id">US-10</span><span>En tant qu'<strong>utilisateur</strong>, je peux basculer entre la vue 2D et la vue 3D de mon plan depuis la barre en haut à droite de l'éditeur.</span></li>
+        <li class="us-item"><span class="us-id">US-11</span><span>En tant qu'<strong>utilisateur</strong>, je peux sélectionner l'étage actif (RDC, Étage 1, etc.) depuis le sélecteur en haut de l'éditeur.</span></li>
+        <li class="us-item"><span class="us-id">US-12</span><span>En tant qu'<strong>utilisateur</strong>, je peux sauvegarder mon plan en cours (bouton 💾 dans la barre d'outils).</span></li>
+        <li class="us-item"><span class="us-id">US-13</span><span>En tant qu'<strong>utilisateur</strong>, je peux annuler ma dernière action dans l'éditeur (bouton ↩).</span></li>
+      </ul>
+    </div>
+
+    <!-- EPIC 4 -->
+    <div class="epic">
+      <div class="epic-header"><div class="epic-icon">📦</div><div class="epic-title">Epic 4 — Équipements</div><div class="epic-count">9 stories</div></div>
+      <ul class="us-list">
+        <li class="us-item"><span class="us-id">US-14</span><span>En tant qu'<strong>utilisateur</strong>, je peux ajouter un équipement en prenant une photo : l'IA (Anthropic Vision) identifie automatiquement le nom, la marque, le modèle, la catégorie et propose un prix de remplacement.</span></li>
+        <li class="us-item"><span class="us-id">US-15</span><span>En tant qu'<strong>utilisateur</strong>, je peux ajouter un équipement en scannant son code EAN ou QR pour récupérer ses données depuis la base produit.</span></li>
+        <li class="us-item"><span class="us-id">US-16</span><span>En tant qu'<strong>utilisateur</strong>, je peux ajouter un équipement manuellement via un formulaire (nom, marque, modèle, catégorie, prix, pièce, date d'installation).</span></li>
+        <li class="us-item"><span class="us-id">US-17</span><span>En tant qu'<strong>utilisateur</strong>, après une analyse IA, je vois les champs pré-remplis avec un score de confiance et je peux corriger toute valeur avant de valider.</span></li>
+        <li class="us-item"><span class="us-id">US-18</span><span>En tant qu'<strong>utilisateur</strong>, je classe chaque équipement comme <strong>Fixe</strong> (reste avec la maison, contribue à la valorisation) ou <strong>Mobilier</strong> (personnel, peut être mis en vente).</span></li>
+        <li class="us-item"><span class="us-id">US-19</span><span>En tant qu'<strong>utilisateur</strong>, je peux consulter la liste de mes équipements avec un filtre par type (Tous / Fixes / Mobiliers) et une organisation par pièce.</span></li>
+        <li class="us-item"><span class="us-id">US-20</span><span>En tant qu'<strong>utilisateur</strong>, je peux accéder au détail d'un équipement : photos, spécifications techniques, valeurs d'achat et actuelle, pièce, date d'installation et état.</span></li>
+        <li class="us-item"><span class="us-id">US-21</span><span>En tant qu'<strong>utilisateur</strong>, je peux modifier les informations d'un équipement ou le supprimer depuis sa vue détail.</span></li>
+        <li class="us-item"><span class="us-id">US-22</span><span>En tant qu'<strong>utilisateur</strong>, je peux consulter la galerie photo qui regroupe toutes les photos de mes équipements, organisées par pièce.</span></li>
+      </ul>
+    </div>
+
+    <!-- EPIC 5 -->
+    <div class="epic">
+      <div class="epic-header"><div class="epic-icon">📄</div><div class="epic-title">Epic 5 — Dashboard & Fiche technique</div><div class="epic-count">5 stories</div></div>
+      <ul class="us-list">
+        <li class="us-item"><span class="us-id">US-23</span><span>En tant qu'<strong>utilisateur</strong>, mon dashboard affiche la valeur documentée de mon bien (équipements fixes + valeur matériaux), ainsi que les statistiques clés (m², nombre d'équipements fixes, mobiliers).</span></li>
+        <li class="us-item"><span class="us-id">US-24</span><span>En tant qu'<strong>utilisateur</strong>, je vois une miniature de mon plan 2D sur le dashboard avec un accès direct à l'éditeur.</span></li>
+        <li class="us-item"><span class="us-id">US-25</span><span>En tant qu'<strong>utilisateur</strong>, je peux générer une fiche technique complète qui regroupe l'identité du bien, la valorisation, les matériaux par pièce et les équipements fixes.</span></li>
+        <li class="us-item"><span class="us-id">US-26</span><span>En tant qu'<strong>utilisateur</strong>, je peux partager ma fiche selon 3 profils : <strong>Acheteur</strong> (fixes + matériaux + galerie), <strong>Locataire</strong> (fixes + mobilier fourni), <strong>Artisan</strong> (vue complète avec notes techniques).</span></li>
+        <li class="us-item"><span class="us-id">US-27</span><span>En tant qu'<strong>utilisateur</strong>, je peux exporter la fiche en PDF (imprimable), JSON (données structurées) ou DXF (plan CAO).</span></li>
+      </ul>
+    </div>
+
+    <!-- EPIC 6 -->
+    <div class="epic">
+      <div class="epic-header"><div class="epic-icon">🛒</div><div class="epic-title">Epic 6 — Marketplace</div><div class="epic-count">6 stories</div></div>
+      <ul class="us-list">
+        <li class="us-item"><span class="us-id">US-28</span><span>En tant qu'<strong>utilisateur</strong>, je peux parcourir la marketplace qui agrège annonces de particuliers (équipements d'occasion) et catalogues de pros (neuf).</span></li>
+        <li class="us-item"><span class="us-id">US-29</span><span>En tant qu'<strong>utilisateur</strong>, je peux filtrer les annonces par catégorie (chauffage, cuisine, mobilier, électroménager, jardin) et par type de vendeur (particulier / pro).</span></li>
+        <li class="us-item"><span class="us-id">US-30</span><span>En tant qu'<strong>utilisateur</strong>, je peux consulter le détail d'une annonce : photos, prix, état, description, spécifications certifiées depuis le passeport du vendeur, et profil du vendeur avec sa note.</span></li>
+        <li class="us-item"><span class="us-id">US-31</span><span>En tant que <strong>propriétaire</strong>, je peux mettre en vente un équipement mobilier de mon passeport en 1 clic : les données (nom, photos, spécifications) sont pré-remplies, je n'ai qu'à fixer le prix et l'état.</span></li>
+        <li class="us-item"><span class="us-id">US-32</span><span>En tant qu'<strong>acheteur</strong>, je peux contacter le vendeur d'une annonce directement depuis la vue détail.</span></li>
+        <li class="us-item"><span class="us-id">US-33</span><span>En tant que <strong>vendeur</strong>, je peux gérer mes annonces actives depuis mon profil (voir, modifier, supprimer).</span></li>
+      </ul>
+    </div>
+
+    <!-- EPIC 7 -->
+    <div class="epic">
+      <div class="epic-header"><div class="epic-icon">💬</div><div class="epic-title">Epic 7 — Messagerie</div><div class="epic-count">4 stories</div></div>
+      <ul class="us-list">
+        <li class="us-item"><span class="us-id">US-34</span><span>En tant qu'<strong>utilisateur</strong>, je peux voir toutes mes conversations dans l'onglet Messages, avec le nom du contact, l'objet lié (annonce), l'aperçu du dernier message et l'heure.</span></li>
+        <li class="us-item"><span class="us-id">US-35</span><span>En tant qu'<strong>utilisateur</strong>, je peux envoyer et recevoir des messages en temps réel (SSE) dans une conversation, avec un accès contextuel à l'annonce concernée.</span></li>
+        <li class="us-item"><span class="us-id">US-36</span><span>En tant qu'<strong>utilisateur</strong>, les messages non lus sont visibles avec un badge numérique sur l'onglet Messages et dans la liste des conversations.</span></li>
+        <li class="us-item"><span class="us-id">US-37</span><span>En tant qu'<strong>utilisateur</strong>, il y a au maximum une conversation par (annonce, acheteur) — pas de doublons de conversations pour le même article.</span></li>
+      </ul>
+    </div>
+
+    <!-- EPIC 8 -->
+    <div class="epic">
+      <div class="epic-header"><div class="epic-icon">🔧</div><div class="epic-title">Epic 8 — Artisans & Fournisseurs</div><div class="epic-count">3 stories</div></div>
+      <ul class="us-list">
+        <li class="us-item"><span class="us-id">US-38</span><span>En tant qu'<strong>utilisateur</strong>, je peux parcourir l'annuaire des artisans et fournisseurs à proximité, filtré par spécialité (plomberie, électricité, chauffage, menuiserie…).</span></li>
+        <li class="us-item"><span class="us-id">US-39</span><span>En tant qu'<strong>utilisateur</strong>, je peux ajuster le rayon de recherche géographique (de 2 à 30 km) pour affiner les résultats.</span></li>
+        <li class="us-item"><span class="us-id">US-40</span><span>En tant qu'<strong>utilisateur</strong>, je peux appeler directement un artisan ou consulter son catalogue depuis sa fiche dans l'annuaire.</span></li>
+      </ul>
+    </div>
+
+    <!-- EPIC 9 -->
+    <div class="epic">
+      <div class="epic-header"><div class="epic-icon">👤</div><div class="epic-title">Epic 9 — Profil utilisateur</div><div class="epic-count">3 stories</div></div>
+      <ul class="us-list">
+        <li class="us-item"><span class="us-id">US-41</span><span>En tant qu'<strong>utilisateur</strong>, je peux voir mon profil avec mon nom, mon email, ma maison (type, surface, équipements, valeur documentée).</span></li>
+        <li class="us-item"><span class="us-id">US-42</span><span>En tant qu'<strong>utilisateur</strong>, j'ai accès depuis mon profil à mes documents (fiche technique, export JSON, lien de partage) et à mes annonces actives.</span></li>
+        <li class="us-item"><span class="us-id">US-43</span><span>En tant qu'<strong>utilisateur</strong>, je peux me déconnecter en appuyant sur "Se déconnecter" depuis mon profil.</span></li>
+      </ul>
+    </div>
+
+    <!-- EPIC 10 -->
+    <div class="epic">
+      <div class="epic-header"><div class="epic-icon">⭐</div><div class="epic-title">Epic 10 — Freemium</div><div class="epic-count">4 stories</div></div>
+      <ul class="us-list">
+        <li class="us-item"><span class="us-id">US-44</span><span>En tant qu'<strong>utilisateur gratuit</strong>, je peux consulter les offres tarifaires et comparer les fonctionnalités des plans Gratuit, Pro et Premium.</span></li>
+        <li class="us-item"><span class="us-id">US-45</span><span>En tant qu'<strong>utilisateur gratuit</strong>, quand j'essaie d'accéder à une fonctionnalité premium, une modale d'upgrade s'affiche avec les avantages du plan supérieur et un CTA d'upgrade.</span></li>
+        <li class="us-item"><span class="us-id">US-46</span><span>En tant qu'<strong>utilisateur Pro</strong>, je peux stocker mes documents importants (contrats, factures, diagnostics) dans un coffre-fort documents sécurisé.</span></li>
+        <li class="us-item"><span class="us-id">US-47</span><span>En tant qu'<strong>utilisateur Pro</strong>, je peux générer un rendu 3D photoréaliste de mon logement depuis l'éditeur de plan.</span></li>
+      </ul>
+    </div>
+
+    <!-- EPIC 11 -->
+    <div class="epic">
+      <div class="epic-header"><div class="epic-icon">🏪</div><div class="epic-title">Epic 11 — Espace Pro (Artisan)</div><div class="epic-count">6 stories</div></div>
+      <ul class="us-list">
+        <li class="us-item"><span class="us-id">US-48</span><span>En tant qu'<strong>artisan</strong>, je peux m'inscrire comme professionnel en renseignant le nom de mon entreprise, ma spécialité, mon numéro SIRET et mes coordonnées.</span></li>
+        <li class="us-item"><span class="us-id">US-49</span><span>En tant qu'<strong>artisan en attente</strong>, je vois un écran de confirmation indiquant que mon compte est en cours de validation par l'équipe Passeport Maison.</span></li>
+        <li class="us-item"><span class="us-id">US-50</span><span>En tant qu'<strong>artisan validé</strong>, j'ai accès à mon dashboard Pro qui affiche mes leads entrants, devis envoyés et chiffre d'affaires estimé.</span></li>
+        <li class="us-item"><span class="us-id">US-51</span><span>En tant qu'<strong>artisan validé</strong>, je peux gérer mon catalogue de produits et services avec leur nom, description, prix et photos.</span></li>
+        <li class="us-item"><span class="us-id">US-52</span><span>En tant qu'<strong>artisan validé</strong>, je peux ajouter un nouvel article à mon catalogue (nom, catégorie, prix, photos, description).</span></li>
+        <li class="us-item"><span class="us-id">US-53</span><span>En tant qu'<strong>artisan validé</strong>, j'ai un profil public visible par les particuliers sur la marketplace, avec mes avis clients, spécialités et coordonnées.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 5. JOURNEYS ═══ -->
+  <section class="section" id="journeys">
+    <div class="section-header">
+      <div class="section-number">05 — Parcours utilisateurs</div>
+      <h2 class="section-title">6 parcours principaux</h2>
+    </div>
+
+    <!-- Journey 1 -->
+    <div class="journey">
+      <div class="journey-header">
+        <div style="font-size:20px">🏠</div>
+        <div class="journey-title">Créer son passeport — Premier usage</div>
+        <div class="journey-persona">Martin · Propriétaire</div>
+      </div>
+      <div class="journey-steps">
+        <div class="step-row">
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-dot">1</div>
+            <div class="step-label">Découvre l'app</div>
+            <div class="step-screen">/welcome</div>
+          </div>
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-dot">2</div>
+            <div class="step-label">Reçoit magic link</div>
+            <div class="step-screen">/auth</div>
+          </div>
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-dot">3</div>
+            <div class="step-label">Onboarding 5 slides</div>
+            <div class="step-screen">/onboarding</div>
+          </div>
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-dot">4</div>
+            <div class="step-label">Crée le logement</div>
+            <div class="step-screen">/create-house</div>
+          </div>
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-dot">5</div>
+            <div class="step-label">Choisit méthode plan</div>
+            <div class="step-screen">/plan-method</div>
+          </div>
+          <div class="step">
+            <div class="step-dot">6</div>
+            <div class="step-label">Dessine le plan</div>
+            <div class="step-screen">/editor</div>
+          </div>
+        </div>
+        <div style="margin-top:12px;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--t2)">
+          <span style="font-weight:600;color:var(--text)">Résultat :</span> L'utilisateur arrive sur /home avec son plan enregistré et 0 équipement documenté.
+        </div>
+      </div>
+    </div>
+
+    <!-- Journey 2 -->
+    <div class="journey">
+      <div class="journey-header" style="background:#7C3AED">
+        <div style="font-size:20px">📷</div>
+        <div class="journey-title">Documenter un équipement par IA</div>
+        <div class="journey-persona">Martin · Propriétaire</div>
+      </div>
+      <div class="journey-steps">
+        <div class="step-row">
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-dot" style="border-color:#7C3AED;background:#EDE9FE">1</div>
+            <div class="step-label">Onglet Équipements</div>
+            <div class="step-screen">/equipment</div>
+          </div>
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-dot" style="border-color:#7C3AED;background:#EDE9FE">2</div>
+            <div class="step-label">Appuie + Ajouter</div>
+            <div class="step-screen">bottom sheet</div>
+          </div>
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-dot" style="border-color:#7C3AED;background:#EDE9FE">3</div>
+            <div class="step-label">Prend une photo</div>
+            <div class="step-screen">camera</div>
+          </div>
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-dot" style="border-color:#7C3AED;background:#EDE9FE">4</div>
+            <div class="step-label">IA identifie (91%)</div>
+            <div class="step-screen">/equip-ai-result</div>
+          </div>
+          <div class="step">
+            <div class="step-dot" style="border-color:#7C3AED;background:#EDE9FE">5</div>
+            <div class="step-label">Valide et classe</div>
+            <div class="step-screen">Fixe / Mobilier</div>
+          </div>
+        </div>
+        <div style="margin-top:12px;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--t2)">
+          <span style="font-weight:600;color:var(--text)">Résultat :</span> L'équipement est ajouté à l'inventaire. S'il est Fixe, sa valeur s'ajoute au total du dashboard.
+        </div>
+      </div>
+    </div>
+
+    <!-- Journey 3 -->
+    <div class="journey">
+      <div class="journey-header" style="background:#16A34A">
+        <div style="font-size:20px">🛒</div>
+        <div class="journey-title">Mettre un équipement en vente</div>
+        <div class="journey-persona">Martin · Propriétaire vendeur</div>
+      </div>
+      <div class="journey-steps">
+        <div class="step-row">
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-dot" style="border-color:#16A34A;background:#DCFCE7">1</div>
+            <div class="step-label">Détail équipement mobilier</div>
+            <div class="step-screen">/equip-detail</div>
+          </div>
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-dot" style="border-color:#16A34A;background:#DCFCE7">2</div>
+            <div class="step-label">Appuie "Mettre en vente"</div>
+            <div class="step-screen">CTA</div>
+          </div>
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-dot" style="border-color:#16A34A;background:#DCFCE7">3</div>
+            <div class="step-label">Formulaire pré-rempli</div>
+            <div class="step-screen">/sell-sheet</div>
+          </div>
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-dot" style="border-color:#16A34A;background:#DCFCE7">4</div>
+            <div class="step-label">Fixe le prix et l'état</div>
+            <div class="step-screen">form</div>
+          </div>
+          <div class="step">
+            <div class="step-dot" style="border-color:#16A34A;background:#DCFCE7">5</div>
+            <div class="step-label">Annonce publiée</div>
+            <div class="step-screen">/marketplace</div>
+          </div>
+        </div>
+        <div style="margin-top:12px;font-size:12px;color:var(--t2)"><span style="font-weight:600;color:var(--text)">Point clé :</span> Les données (nom, photos, specs, prix d'origine) sont héritées du passeport. L'annonce affiche le badge "Certifié Passeport Maison".</div>
+      </div>
+    </div>
+
+    <!-- Journey 4 -->
+    <div class="journey">
+      <div class="journey-header" style="background:#D97706">
+        <div style="font-size:20px">💬</div>
+        <div class="journey-title">Contacter un vendeur · Parcours acheteur</div>
+        <div class="journey-persona">Julie · Acheteuse</div>
+      </div>
+      <div class="journey-steps">
+        <div class="step-row">
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-dot" style="border-color:#D97706;background:#FEF3C7">1</div>
+            <div class="step-label">Parcourt marketplace</div>
+            <div class="step-screen">/marketplace</div>
+          </div>
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-dot" style="border-color:#D97706;background:#FEF3C7">2</div>
+            <div class="step-label">Consulte l'annonce</div>
+            <div class="step-screen">/listing/[id]</div>
+          </div>
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-dot" style="border-color:#D97706;background:#FEF3C7">3</div>
+            <div class="step-label">Envoie un message</div>
+            <div class="step-screen">CTA</div>
+          </div>
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-dot" style="border-color:#D97706;background:#FEF3C7">4</div>
+            <div class="step-label">Conversation ouverte</div>
+            <div class="step-screen">/messages/[id]</div>
+          </div>
+          <div class="step">
+            <div class="step-dot" style="border-color:#D97706;background:#FEF3C7">5</div>
+            <div class="step-label">Échange en temps réel</div>
+            <div class="step-screen">SSE</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Journey 5 -->
+    <div class="journey">
+      <div class="journey-header" style="background:#0F172A">
+        <div style="font-size:20px">📄</div>
+        <div class="journey-title">Partager la fiche technique</div>
+        <div class="journey-persona">Martin → Sophie · Propriétaire → Acheteuse</div>
+      </div>
+      <div class="journey-steps">
+        <div class="step-row">
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-dot">1</div>
+            <div class="step-label">Ouvre la fiche</div>
+            <div class="step-screen">/house-report</div>
+          </div>
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-dot">2</div>
+            <div class="step-label">Appuie Partager</div>
+            <div class="step-screen">modal</div>
+          </div>
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-dot">3</div>
+            <div class="step-label">Choisit profil "Acheteur"</div>
+            <div class="step-screen">3 profils</div>
+          </div>
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-dot">4</div>
+            <div class="step-label">Génère un lien unique</div>
+            <div class="step-screen">token URL</div>
+          </div>
+          <div class="step">
+            <div class="step-dot">5</div>
+            <div class="step-label">Sophie consulte (sans compte)</div>
+            <div class="step-screen">vue publique</div>
+          </div>
+        </div>
+        <div style="margin-top:12px;font-size:12px;color:var(--t2)"><span style="font-weight:600;color:var(--text)">Point clé :</span> La vue acheteur n'affiche que les équipements fixes, les matériaux et la galerie. Les équipements mobiliers sont masqués.</div>
+      </div>
+    </div>
+
+    <!-- Journey 6 -->
+    <div class="journey">
+      <div class="journey-header" style="background:#16A34A">
+        <div style="font-size:20px">🏪</div>
+        <div class="journey-title">Inscription Pro artisan</div>
+        <div class="journey-persona">Maxime · Artisan</div>
+      </div>
+      <div class="journey-steps">
+        <div class="step-row">
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-dot" style="border-color:#16A34A;background:#DCFCE7">1</div>
+            <div class="step-label">Formulaire inscription</div>
+            <div class="step-screen">/pro-register</div>
+          </div>
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-dot" style="border-color:#16A34A;background:#DCFCE7">2</div>
+            <div class="step-label">En attente validation</div>
+            <div class="step-screen">/pro-pending</div>
+          </div>
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-dot" style="border-color:#16A34A;background:#DCFCE7">3</div>
+            <div class="step-label">Validation admin</div>
+            <div class="step-screen">back-office</div>
+          </div>
+          <div class="step">
+            <div class="step-connector"></div>
+            <div class="step-dot" style="border-color:#16A34A;background:#DCFCE7">4</div>
+            <div class="step-label">Dashboard Pro</div>
+            <div class="step-screen">/pro-dashboard</div>
+          </div>
+          <div class="step">
+            <div class="step-dot" style="border-color:#16A34A;background:#DCFCE7">5</div>
+            <div class="step-label">Gère son catalogue</div>
+            <div class="step-screen">/pro-catalog</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 6. ÉCRANS ═══ -->
+  <section class="section" id="screens">
+    <div class="section-header">
+      <div class="section-number">06 — Inventaire des écrans</div>
+      <h2 class="section-title">32 écrans · wireframes.html</h2>
+    </div>
+
+    <div class="table-wrap">
+      <table class="screen-table">
+        <thead><tr><th>Route / ID</th><th>Nom</th><th>Description</th><th>Groupe</th></tr></thead>
+        <tbody>
+          <tr><td><span class="screen-name">welcome</span></td><td>Welcome</td><td>Landing plein écran avec hero, CTA inscription et accès marketplace</td><td><span class="badge b-grey">Auth</span></td></tr>
+          <tr><td><span class="screen-name">auth</span></td><td>Connexion</td><td>Saisie email → envoi magic link</td><td><span class="badge b-grey">Auth</span></td></tr>
+          <tr><td><span class="screen-name">auth-sent</span></td><td>Email envoyé</td><td>Confirmation d'envoi avec CTA renvoyer</td><td><span class="badge b-grey">Auth</span></td></tr>
+          <tr><td><span class="screen-name">onboarding</span></td><td>Onboarding</td><td>5 slides paginés avec illustrations et bouton "Passer"</td><td><span class="badge b-blue">Onboarding</span></td></tr>
+          <tr><td><span class="screen-name">create-house</span></td><td>Créer ma maison</td><td>Formulaire : nom, type (6 options), étages, surface, année, adresse</td><td><span class="badge b-blue">Onboarding</span></td></tr>
+          <tr><td><span class="screen-name">plan-method</span></td><td>Méthode de plan</td><td>3 cartes méthodes : éditeur interactif (recommandé), saisie rapide, import</td><td><span class="badge b-blue">Onboarding</span></td></tr>
+          <tr><td><span class="screen-name">saisie-rapide</span></td><td>Saisie rapide — compteurs</td><td>Compteurs + / − par type de pièce, récapitulatif en bas</td><td><span class="badge b-blue">Onboarding</span></td></tr>
+          <tr><td><span class="screen-name">saisie-config</span></td><td>Saisie rapide — configuration</td><td>Dimensions (L × l) de chaque pièce avec renommage et sélection d'étage</td><td><span class="badge b-blue">Onboarding</span></td></tr>
+          <tr><td><span class="screen-name">editor</span></td><td>Éditeur 2D/3D</td><td>open3dFloorplan — canvas, barre outils, toggle 2D/3D, sélecteur étage</td><td><span class="badge b-grey">Éditeur</span></td></tr>
+          <tr><td><span class="screen-name">home</span></td><td>Dashboard</td><td>Value card (€), miniature plan, stats, accès galerie et fiche technique</td><td><span class="badge b-blue">App</span></td></tr>
+          <tr><td><span class="screen-name">gallery</span></td><td>Galerie photo</td><td>Photos des équipements regroupées par pièce en grille 2 colonnes</td><td><span class="badge b-blue">App</span></td></tr>
+          <tr><td><span class="screen-name">equipment</span></td><td>Équipements</td><td>Liste avec tabs Tous/Fixes/Mobiliers, groupée par pièce, bottom sheet "Ajouter"</td><td><span class="badge b-blue">App</span></td></tr>
+          <tr><td><span class="screen-name">equip-ai-result</span></td><td>Résultat IA</td><td>Formulaire pré-rempli par l'IA avec score de confiance, sélecteur Fixe/Mobilier</td><td><span class="badge b-blue">App</span></td></tr>
+          <tr><td><span class="screen-name">equip-detail</span></td><td>Détail équipement</td><td>Photo, specs, valorisation, boutons Modifier / Supprimer / Mettre en vente</td><td><span class="badge b-blue">App</span></td></tr>
+          <tr><td><span class="screen-name">house-report</span></td><td>Fiche technique</td><td>Identité, valorisation, matériaux, équipements fixes, modal partage + exports</td><td><span class="badge b-grey">Fiche</span></td></tr>
+          <tr><td><span class="screen-name">marketplace</span></td><td>Marketplace</td><td>Tabs Tous/Particuliers/Pros, filtres catégories, liste d'annonces cards</td><td><span class="badge b-pro">Market</span></td></tr>
+          <tr><td><span class="screen-name">listing-detail</span></td><td>Détail annonce</td><td>Photos, prix, état, vendeur, description, specs certifiées, CTA message</td><td><span class="badge b-pro">Market</span></td></tr>
+          <tr><td><span class="screen-name">sell-sheet-screen</span></td><td>Mettre en vente</td><td>Formulaire avec données pré-remplies depuis le passeport (prix, état, desc, photos)</td><td><span class="badge b-pro">Market</span></td></tr>
+          <tr><td><span class="screen-name">messages</span></td><td>Messages</td><td>Liste des conversations avec badge non-lus, aperçu dernier message</td><td><span class="badge b-mob">Messages</span></td></tr>
+          <tr><td><span class="screen-name">conversation</span></td><td>Conversation</td><td>Chat temps réel SSE, contexte annonce en haut, bulles, barre de saisie</td><td><span class="badge b-mob">Messages</span></td></tr>
+          <tr><td><span class="screen-name">suppliers</span></td><td>Artisans & Fournisseurs</td><td>Annuaire avec tabs Artisans/Fournisseurs, slider rayon, filtre spécialité</td><td><span class="badge b-grey">Autres</span></td></tr>
+          <tr><td><span class="screen-name">profile</span></td><td>Profil</td><td>Info utilisateur, résumé logement, accès documents et annonces, déconnexion</td><td><span class="badge b-grey">Autres</span></td></tr>
+          <tr><td><span class="screen-name">pricing</span></td><td>Tarifs & offres</td><td>Comparatif des 3 plans avec pricing cards et CTAs d'upgrade</td><td><span class="badge b-warn">Freemium</span></td></tr>
+          <tr><td><span class="screen-name">upgrade</span></td><td>Upgrade modal</td><td>Modal contextuel listé les avantages du plan supérieur, CTA upgrade</td><td><span class="badge b-warn">Freemium</span></td></tr>
+          <tr><td><span class="screen-name">documents</span></td><td>Coffre-fort docs</td><td>Stockage sécurisé des documents (contrats, factures, diagnostics) — Pro uniquement</td><td><span class="badge b-warn">Freemium</span></td></tr>
+          <tr><td><span class="screen-name">render-3d</span></td><td>Rendu 3D réaliste</td><td>Génération d'un rendu photoréaliste depuis le plan — Pro uniquement</td><td><span class="badge b-warn">Freemium</span></td></tr>
+          <tr><td><span class="screen-name">pro-register</span></td><td>Inscription Pro</td><td>Formulaire SIRET, spécialité, rayon d'activité, coordonnées entreprise</td><td><span class="badge b-pro">Espace Pro</span></td></tr>
+          <tr><td><span class="screen-name">pro-pending</span></td><td>En attente validation</td><td>Écran d'attente avec délai estimé et contact support</td><td><span class="badge b-pro">Espace Pro</span></td></tr>
+          <tr><td><span class="screen-name">pro-dashboard</span></td><td>Dashboard Pro</td><td>KPIs (leads, devis, CA), liste des demandes récentes, accès rapide catalogue</td><td><span class="badge b-pro">Espace Pro</span></td></tr>
+          <tr><td><span class="screen-name">pro-catalog</span></td><td>Catalogue Pro</td><td>Liste des articles du catalogue avec prix, photos miniatures, CTA Ajouter</td><td><span class="badge b-pro">Espace Pro</span></td></tr>
+          <tr><td><span class="screen-name">pro-catalog-new</span></td><td>Ajouter article</td><td>Formulaire : nom, catégorie, prix, description, photos</td><td><span class="badge b-pro">Espace Pro</span></td></tr>
+          <tr><td><span class="screen-name">pro-public</span></td><td>Profil Pro public</td><td>Vue publique : spécialités, avis, distance, certifications, CTA contact</td><td><span class="badge b-pro">Espace Pro</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 7. STACK ═══ -->
+  <section class="section" id="stack">
+    <div class="section-header">
+      <div class="section-number">07 — Stack technique</div>
+      <h2 class="section-title">Architecture full-stack SvelteKit</h2>
+      <p class="section-desc">Application mobile-first. Référence de design : iPhone 390 × 844 px. Toutes les pages sont des routes SvelteKit — pas d'app séparée front/back.</p>
+    </div>
+
+    <div class="stack-grid">
+      <div class="stack-item">
+        <div class="stack-role">Framework</div>
+        <div class="stack-name">SvelteKit 2.5 + Svelte 5</div>
+        <div class="stack-detail">Full-stack. Routing par fichiers. +page.svelte + +server.ts. SSR activé.</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-role">Base de données</div>
+        <div class="stack-name">PostgreSQL + Prisma ORM</div>
+        <div class="stack-detail">Prisma Client généré. Migrations avec prisma migrate. Schema dans prisma/schema.prisma.</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-role">Authentification</div>
+        <div class="stack-name">Magic link · Resend · JWT</div>
+        <div class="stack-detail">Pas de mot de passe. Lien unique valable 15 min envoyé par email via Resend. Session JWT dans cookie httpOnly.</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-role">Intelligence artificielle</div>
+        <div class="stack-name">Anthropic SDK (Vision)</div>
+        <div class="stack-detail">Analyse photo d'équipement. Retourne nom, marque, modèle, catégorie, prix de remplacement estimé, score de confiance.</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-role">Éditeur de plan</div>
+        <div class="stack-name">open3dFloorplan (Three.js)</div>
+        <div class="stack-detail">Intégré dans la route /editor. Dessin vectoriel 2D, rendu 3D temps réel, 245+ équipements pré-définis.</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-role">Temps réel</div>
+        <div class="stack-name">Server-Sent Events (SSE)</div>
+        <div class="stack-detail">Pas de WebSocket. Endpoint GET /api/conversations/[id]/stream. Unidirectionnel serveur → client, suffisant pour la messagerie.</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-role">State management</div>
+        <div class="stack-name">Svelte stores</div>
+        <div class="stack-detail">Runes Svelte 5 ($state, $derived) pour le state local. Svelte stores pour le state global (user, currentHouse).</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-role">Emails transactionnels</div>
+        <div class="stack-name">Resend</div>
+        <div class="stack-detail">Magic link uniquement en V1. Template HTML simple. Domaine expéditeur à configurer.</div>
+      </div>
+    </div>
+
+    <div class="info-note">
+      <strong>Référentiel de départ :</strong> Le projet est basé sur <code>open3dFloorplan-main</code>. L'éditeur est déjà fonctionnel. Toute la couche SvelteKit (auth, API, BDD) est à construire par-dessus.
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 8. ROUTES ═══ -->
+  <section class="section" id="routes">
+    <div class="section-header">
+      <div class="section-number">08 — Routes SvelteKit</div>
+      <h2 class="section-title">Structure de fichiers src/routes/</h2>
+    </div>
+
+    <div class="route-group">
+      <div class="route-group-title">Pages publiques (non authentifiées)</div>
+      <div class="route-row"><span class="screen-name" style="min-width:220px;font-size:12px">/</span><span style="color:var(--t2);font-size:13px">Welcome — landing page</span></div>
+      <div class="route-row"><span class="screen-name" style="min-width:220px;font-size:12px">/auth</span><span style="color:var(--t2);font-size:13px">Connexion magic link</span></div>
+      <div class="route-row"><span class="screen-name" style="min-width:220px;font-size:12px">/auth/verify?token=[t]</span><span style="color:var(--t2);font-size:13px">Validation du token magic link → session JWT</span></div>
+      <div class="route-row"><span class="screen-name" style="min-width:220px;font-size:12px">/share/[token]</span><span style="color:var(--t2);font-size:13px">Vue publique fiche technique partagée (sans authentification)</span></div>
+      <div class="route-row"><span class="screen-name" style="min-width:220px;font-size:12px">/marketplace</span><span style="color:var(--t2);font-size:13px">Marketplace accessible sans compte</span></div>
+    </div>
+
+    <div class="route-group">
+      <div class="route-group-title">Onboarding (authentifié)</div>
+      <div class="route-row"><span class="screen-name" style="min-width:220px;font-size:12px">/onboarding</span><span style="color:var(--t2);font-size:13px">5 slides de présentation</span></div>
+      <div class="route-row"><span class="screen-name" style="min-width:220px;font-size:12px">/create-house</span><span style="color:var(--t2);font-size:13px">Formulaire création du logement</span></div>
+      <div class="route-row"><span class="screen-name" style="min-width:220px;font-size:12px">/plan-method</span><span style="color:var(--t2);font-size:13px">Choix méthode plan</span></div>
+    </div>
+
+    <div class="route-group">
+      <div class="route-group-title">Application principale (authentifié + logement requis)</div>
+      <div class="route-row"><span class="screen-name" style="min-width:220px;font-size:12px">/home</span><span style="color:var(--t2);font-size:13px">Dashboard propriétaire</span></div>
+      <div class="route-row"><span class="screen-name" style="min-width:220px;font-size:12px">/editor</span><span style="color:var(--t2);font-size:13px">Éditeur 2D/3D open3dFloorplan</span></div>
+      <div class="route-row"><span class="screen-name" style="min-width:220px;font-size:12px">/equipment</span><span style="color:var(--t2);font-size:13px">Liste des équipements</span></div>
+      <div class="route-row"><span class="screen-name" style="min-width:220px;font-size:12px">/equipment/[id]</span><span style="color:var(--t2);font-size:13px">Détail d'un équipement</span></div>
+      <div class="route-row"><span class="screen-name" style="min-width:220px;font-size:12px">/equipment/new</span><span style="color:var(--t2);font-size:13px">Ajout équipement (IA / scan / manuel)</span></div>
+      <div class="route-row"><span class="screen-name" style="min-width:220px;font-size:12px">/house-report</span><span style="color:var(--t2);font-size:13px">Fiche technique</span></div>
+      <div class="route-row"><span class="screen-name" style="min-width:220px;font-size:12px">/marketplace/[id]</span><span style="color:var(--t2);font-size:13px">Détail d'une annonce</span></div>
+      <div class="route-row"><span class="screen-name" style="min-width:220px;font-size:12px">/marketplace/sell</span><span style="color:var(--t2);font-size:13px">Mettre en vente un équipement</span></div>
+      <div class="route-row"><span class="screen-name" style="min-width:220px;font-size:12px">/messages</span><span style="color:var(--t2);font-size:13px">Inbox messages</span></div>
+      <div class="route-row"><span class="screen-name" style="min-width:220px;font-size:12px">/messages/[id]</span><span style="color:var(--t2);font-size:13px">Conversation individuelle</span></div>
+      <div class="route-row"><span class="screen-name" style="min-width:220px;font-size:12px">/suppliers</span><span style="color:var(--t2);font-size:13px">Annuaire artisans & fournisseurs</span></div>
+      <div class="route-row"><span class="screen-name" style="min-width:220px;font-size:12px">/profile</span><span style="color:var(--t2);font-size:13px">Profil utilisateur</span></div>
+      <div class="route-row"><span class="screen-name" style="min-width:220px;font-size:12px">/pricing</span><span style="color:var(--t2);font-size:13px">Page tarifs freemium</span></div>
+      <div class="route-row"><span class="screen-name" style="min-width:220px;font-size:12px">/documents</span><span style="color:var(--t2);font-size:13px">Coffre-fort documents (Pro)</span></div>
+    </div>
+
+    <div class="route-group">
+      <div class="route-group-title">Espace Pro</div>
+      <div class="route-row"><span class="screen-name" style="min-width:220px;font-size:12px">/pro/register</span><span style="color:var(--t2);font-size:13px">Inscription artisan/fournisseur</span></div>
+      <div class="route-row"><span class="screen-name" style="min-width:220px;font-size:12px">/pro/pending</span><span style="color:var(--t2);font-size:13px">En attente de validation</span></div>
+      <div class="route-row"><span class="screen-name" style="min-width:220px;font-size:12px">/pro/dashboard</span><span style="color:var(--t2);font-size:13px">Dashboard Pro (leads, devis, CA)</span></div>
+      <div class="route-row"><span class="screen-name" style="min-width:220px;font-size:12px">/pro/catalog</span><span style="color:var(--t2);font-size:13px">Gestion du catalogue</span></div>
+      <div class="route-row"><span class="screen-name" style="min-width:220px;font-size:12px">/pro/catalog/new</span><span style="color:var(--t2);font-size:13px">Ajouter un article au catalogue</span></div>
+      <div class="route-row"><span class="screen-name" style="min-width:220px;font-size:12px">/pro/[id]</span><span style="color:var(--t2);font-size:13px">Profil Pro public</span></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 9. API ═══ -->
+  <section class="section" id="api">
+    <div class="section-header">
+      <div class="section-number">09 — API Endpoints</div>
+      <h2 class="section-title">+server.ts sous src/routes/api/</h2>
+    </div>
+
+    <div class="route-group">
+      <div class="route-group-title">Auth</div>
+      <div class="route-row"><span class="route-method post">POST</span><span class="route-path">/api/auth/send-link</span><span class="route-desc">Envoie magic link par email (Resend)</span></div>
+      <div class="route-row"><span class="route-method get">GET</span><span class="route-path">/api/auth/verify</span><span class="route-desc">Valide token → pose cookie JWT httpOnly → redirect /home</span></div>
+      <div class="route-row"><span class="route-method post">POST</span><span class="route-path">/api/auth/logout</span><span class="route-desc">Invalide le cookie de session</span></div>
+    </div>
+
+    <div class="route-group">
+      <div class="route-group-title">Houses</div>
+      <div class="route-row"><span class="route-method get">GET</span><span class="route-path">/api/houses</span><span class="route-desc">Retourne le logement de l'utilisateur courant</span></div>
+      <div class="route-row"><span class="route-method post">POST</span><span class="route-path">/api/houses</span><span class="route-desc">Crée un logement</span></div>
+      <div class="route-row"><span class="route-method put">PUT</span><span class="route-path">/api/houses/[id]</span><span class="route-desc">Met à jour les infos du logement</span></div>
+      <div class="route-row"><span class="route-method post">POST</span><span class="route-path">/api/houses/[id]/plan</span><span class="route-desc">Sauvegarde le JSON du plan open3dFloorplan</span></div>
+    </div>
+
+    <div class="route-group">
+      <div class="route-group-title">Équipements</div>
+      <div class="route-row"><span class="route-method get">GET</span><span class="route-path">/api/equipment</span><span class="route-desc">Liste les équipements du logement courant</span></div>
+      <div class="route-row"><span class="route-method post">POST</span><span class="route-path">/api/equipment</span><span class="route-desc">Crée un équipement (manuel, scan ou IA)</span></div>
+      <div class="route-row"><span class="route-method put">PUT</span><span class="route-path">/api/equipment/[id]</span><span class="route-desc">Modifie un équipement</span></div>
+      <div class="route-row"><span class="route-method del">DEL</span><span class="route-path">/api/equipment/[id]</span><span class="route-desc">Supprime un équipement</span></div>
+      <div class="route-row"><span class="route-method post">POST</span><span class="route-path">/api/equipment/analyze</span><span class="route-desc">Analyse une photo → Anthropic Vision → retourne champs pré-remplis + score</span></div>
+    </div>
+
+    <div class="route-group">
+      <div class="route-group-title">Marketplace / Listings</div>
+      <div class="route-row"><span class="route-method get">GET</span><span class="route-path">/api/listings</span><span class="route-desc">Liste paginée avec filtres (catégorie, type, localisation)</span></div>
+      <div class="route-row"><span class="route-method get">GET</span><span class="route-path">/api/listings/[id]</span><span class="route-desc">Détail d'une annonce</span></div>
+      <div class="route-row"><span class="route-method post">POST</span><span class="route-path">/api/listings</span><span class="route-desc">Publie une annonce depuis un équipement mobilier</span></div>
+      <div class="route-row"><span class="route-method del">DEL</span><span class="route-path">/api/listings/[id]</span><span class="route-desc">Retire une annonce</span></div>
+    </div>
+
+    <div class="route-group">
+      <div class="route-group-title">Messagerie</div>
+      <div class="route-row"><span class="route-method get">GET</span><span class="route-path">/api/conversations</span><span class="route-desc">Liste les conversations de l'utilisateur</span></div>
+      <div class="route-row"><span class="route-method post">POST</span><span class="route-path">/api/conversations</span><span class="route-desc">Crée ou récupère la conversation (listing, acheteur) — contrainte unique</span></div>
+      <div class="route-row"><span class="route-method post">POST</span><span class="route-path">/api/conversations/[id]/messages</span><span class="route-desc">Envoie un message dans une conversation</span></div>
+      <div class="route-row"><span class="route-method get">GET</span><span class="route-path">/api/conversations/[id]/stream</span><span class="route-desc">SSE — stream des nouveaux messages (text/event-stream)</span></div>
+    </div>
+
+    <div class="route-group">
+      <div class="route-group-title">Fiche technique</div>
+      <div class="route-row"><span class="route-method post">POST</span><span class="route-path">/api/houses/[id]/share</span><span class="route-desc">Génère un token de partage avec profil (buyer | tenant | pro)</span></div>
+      <div class="route-row"><span class="route-method get">GET</span><span class="route-path">/api/share/[token]</span><span class="route-desc">Retourne les données de la fiche selon le profil du token (public)</span></div>
+    </div>
+
+    <div class="route-group">
+      <div class="route-group-title">Espace Pro</div>
+      <div class="route-row"><span class="route-method post">POST</span><span class="route-path">/api/pro/register</span><span class="route-desc">Soumet une demande d'inscription Pro</span></div>
+      <div class="route-row"><span class="route-method get">GET</span><span class="route-path">/api/pro/status</span><span class="route-desc">Statut de validation du compte Pro (pending | approved | rejected)</span></div>
+      <div class="route-row"><span class="route-method get">GET</span><span class="route-path">/api/pro/catalog</span><span class="route-desc">Liste les articles du catalogue du Pro connecté</span></div>
+      <div class="route-row"><span class="route-method post">POST</span><span class="route-path">/api/pro/catalog</span><span class="route-desc">Ajoute un article au catalogue</span></div>
+      <div class="route-row"><span class="route-method get">GET</span><span class="route-path">/api/suppliers</span><span class="route-desc">Recherche géolocalisée des artisans (lat, lng, radius, specialty)</span></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 10. SCHEMA ═══ -->
+  <section class="section" id="schema">
+    <div class="section-header">
+      <div class="section-number">10 — Modèle de données</div>
+      <h2 class="section-title">Schéma Prisma (prisma/schema.prisma)</h2>
+    </div>
+
+    <div class="model-card">
+      <div class="model-header"><span class="model-name">User</span><span class="model-desc">Compte utilisateur</span></div>
+      <div class="model-fields">
+        <div class="field-row"><span class="field-name field-pk">id</span><span class="field-type">String</span><span class="field-mod">@id @default(cuid())</span></div>
+        <div class="field-row"><span class="field-name">email</span><span class="field-type">String</span><span class="field-mod">@unique</span></div>
+        <div class="field-row"><span class="field-name">name</span><span class="field-type">String?</span><span class="field-mod"></span></div>
+        <div class="field-row"><span class="field-name">plan</span><span class="field-type">Plan</span><span class="field-mod">@default(FREE) // FREE | PRO | PREMIUM</span></div>
+        <div class="field-row"><span class="field-name">createdAt</span><span class="field-type">DateTime</span><span class="field-mod">@default(now())</span></div>
+        <div class="field-row"><span class="field-name">house</span><span class="field-type">House?</span><span class="field-mod">relation</span></div>
+        <div class="field-row"><span class="field-name">supplierProfile</span><span class="field-type">SupplierProfile?</span><span class="field-mod">relation</span></div>
+      </div>
+    </div>
+
+    <div class="model-card">
+      <div class="model-header"><span class="model-name">House</span><span class="model-desc">Logement (1 par user en V1)</span></div>
+      <div class="model-fields">
+        <div class="field-row"><span class="field-name field-pk">id</span><span class="field-type">String</span><span class="field-mod">@id @default(cuid())</span></div>
+        <div class="field-row"><span class="field-name">userId</span><span class="field-type">String</span><span class="field-mod">@unique</span></div>
+        <div class="field-row"><span class="field-name">name</span><span class="field-type">String</span><span class="field-mod"></span></div>
+        <div class="field-row"><span class="field-name">type</span><span class="field-type">HouseType</span><span class="field-mod">// MAISON | APPARTEMENT | BUREAU | …</span></div>
+        <div class="field-row"><span class="field-name">floors</span><span class="field-type">Int</span><span class="field-mod">@default(1)</span></div>
+        <div class="field-row"><span class="field-name">area</span><span class="field-type">Float?</span><span class="field-mod">// m²</span></div>
+        <div class="field-row"><span class="field-name">yearBuilt</span><span class="field-type">Int?</span><span class="field-mod"></span></div>
+        <div class="field-row"><span class="field-name">address</span><span class="field-type">String?</span><span class="field-mod"></span></div>
+        <div class="field-row"><span class="field-name">planJson</span><span class="field-type">Json?</span><span class="field-mod">// Plan open3dFloorplan sérialisé</span></div>
+        <div class="field-row"><span class="field-name">equipment</span><span class="field-type">Equipment[]</span><span class="field-mod">relation</span></div>
+        <div class="field-row"><span class="field-name">shareTokens</span><span class="field-type">ShareToken[]</span><span class="field-mod">relation</span></div>
+      </div>
+    </div>
+
+    <div class="model-card">
+      <div class="model-header"><span class="model-name">Equipment</span><span class="model-desc">Équipement du logement</span></div>
+      <div class="model-fields">
+        <div class="field-row"><span class="field-name field-pk">id</span><span class="field-type">String</span><span class="field-mod">@id @default(cuid())</span></div>
+        <div class="field-row"><span class="field-name">houseId</span><span class="field-type">String</span><span class="field-mod"></span></div>
+        <div class="field-row"><span class="field-name">name</span><span class="field-type">String</span><span class="field-mod"></span></div>
+        <div class="field-row"><span class="field-name">brand</span><span class="field-type">String?</span><span class="field-mod"></span></div>
+        <div class="field-row"><span class="field-name">model</span><span class="field-type">String?</span><span class="field-mod"></span></div>
+        <div class="field-row"><span class="field-name">category</span><span class="field-type">String</span><span class="field-mod"></span></div>
+        <div class="field-row"><span class="field-name">kind</span><span class="field-type">EquipKind</span><span class="field-mod">// FIXED | MOVABLE</span></div>
+        <div class="field-row"><span class="field-name">room</span><span class="field-type">String?</span><span class="field-mod"></span></div>
+        <div class="field-row"><span class="field-name">purchasePrice</span><span class="field-type">Float?</span><span class="field-mod">// contribue à totalFixedValue si FIXED</span></div>
+        <div class="field-row"><span class="field-name">replacementPrice</span><span class="field-type">Float?</span><span class="field-mod">// estimé par IA</span></div>
+        <div class="field-row"><span class="field-name">condition</span><span class="field-type">String?</span><span class="field-mod">// Excellent | Très bon | Bon | Moyen</span></div>
+        <div class="field-row"><span class="field-name">installedAt</span><span class="field-type">DateTime?</span><span class="field-mod"></span></div>
+        <div class="field-row"><span class="field-name">aiSource</span><span class="field-type">Boolean</span><span class="field-mod">@default(false)</span></div>
+        <div class="field-row"><span class="field-name">aiConfidence</span><span class="field-type">Float?</span><span class="field-mod">// 0–1</span></div>
+        <div class="field-row"><span class="field-name">photos</span><span class="field-type">String[]</span><span class="field-mod">// URLs</span></div>
+        <div class="field-row"><span class="field-name">listing</span><span class="field-type">Listing?</span><span class="field-mod">relation (si mis en vente)</span></div>
+      </div>
+    </div>
+
+    <div class="model-card">
+      <div class="model-header"><span class="model-name">Listing</span><span class="model-desc">Annonce marketplace</span></div>
+      <div class="model-fields">
+        <div class="field-row"><span class="field-name field-pk">id</span><span class="field-type">String</span><span class="field-mod">@id @default(cuid())</span></div>
+        <div class="field-row"><span class="field-name">equipmentId</span><span class="field-type">String</span><span class="field-mod">@unique</span></div>
+        <div class="field-row"><span class="field-name">sellerId</span><span class="field-type">String</span><span class="field-mod"></span></div>
+        <div class="field-row"><span class="field-name">price</span><span class="field-type">Float</span><span class="field-mod"></span></div>
+        <div class="field-row"><span class="field-name">condition</span><span class="field-type">String</span><span class="field-mod"></span></div>
+        <div class="field-row"><span class="field-name">description</span><span class="field-type">String?</span><span class="field-mod"></span></div>
+        <div class="field-row"><span class="field-name">city</span><span class="field-type">String?</span><span class="field-mod"></span></div>
+        <div class="field-row"><span class="field-name">lat</span><span class="field-type">Float?</span><span class="field-mod"></span></div>
+        <div class="field-row"><span class="field-name">lng</span><span class="field-type">Float?</span><span class="field-mod"></span></div>
+        <div class="field-row"><span class="field-name">active</span><span class="field-type">Boolean</span><span class="field-mod">@default(true)</span></div>
+        <div class="field-row"><span class="field-name">conversations</span><span class="field-type">Conversation[]</span><span class="field-mod">relation</span></div>
+      </div>
+    </div>
+
+    <div class="model-card">
+      <div class="model-header"><span class="model-name">Conversation</span><span class="model-desc">Thread messagerie — unique par (listing, acheteur)</span></div>
+      <div class="model-fields">
+        <div class="field-row"><span class="field-name field-pk">id</span><span class="field-type">String</span><span class="field-mod">@id @default(cuid())</span></div>
+        <div class="field-row"><span class="field-name">listingId</span><span class="field-type">String</span><span class="field-mod"></span></div>
+        <div class="field-row"><span class="field-name">buyerId</span><span class="field-type">String</span><span class="field-mod"></span></div>
+        <div class="field-row"><span class="field-name">messages</span><span class="field-type">Message[]</span><span class="field-mod">relation</span></div>
+        <div class="field-row"><span class="field-name"></span><span class="field-type"></span><span class="field-mod">@@unique([listingId, buyerId])</span></div>
+      </div>
+    </div>
+
+    <div class="model-card">
+      <div class="model-header"><span class="model-name">Message</span><span class="model-desc">Message dans une conversation</span></div>
+      <div class="model-fields">
+        <div class="field-row"><span class="field-name field-pk">id</span><span class="field-type">String</span><span class="field-mod">@id @default(cuid())</span></div>
+        <div class="field-row"><span class="field-name">conversationId</span><span class="field-type">String</span><span class="field-mod"></span></div>
+        <div class="field-row"><span class="field-name">senderId</span><span class="field-type">String</span><span class="field-mod"></span></div>
+        <div class="field-row"><span class="field-name">content</span><span class="field-type">String</span><span class="field-mod"></span></div>
+        <div class="field-row"><span class="field-name">readAt</span><span class="field-type">DateTime?</span><span class="field-mod"></span></div>
+        <div class="field-row"><span class="field-name">createdAt</span><span class="field-type">DateTime</span><span class="field-mod">@default(now())</span></div>
+      </div>
+    </div>
+
+    <div class="model-card">
+      <div class="model-header"><span class="model-name">SupplierProfile</span><span class="model-desc">Profil artisan / fournisseur Pro</span></div>
+      <div class="model-fields">
+        <div class="field-row"><span class="field-name field-pk">id</span><span class="field-type">String</span><span class="field-mod">@id @default(cuid())</span></div>
+        <div class="field-row"><span class="field-name">userId</span><span class="field-type">String</span><span class="field-mod">@unique</span></div>
+        <div class="field-row"><span class="field-name">companyName</span><span class="field-type">String</span><span class="field-mod"></span></div>
+        <div class="field-row"><span class="field-name">siret</span><span class="field-type">String</span><span class="field-mod">@unique</span></div>
+        <div class="field-row"><span class="field-name">specialty</span><span class="field-type">String[]</span><span class="field-mod"></span></div>
+        <div class="field-row"><span class="field-name">status</span><span class="field-type">ProStatus</span><span class="field-mod">// PENDING | APPROVED | REJECTED</span></div>
+        <div class="field-row"><span class="field-name">lat</span><span class="field-type">Float?</span><span class="field-mod"></span></div>
+        <div class="field-row"><span class="field-name">lng</span><span class="field-type">Float?</span><span class="field-mod"></span></div>
+        <div class="field-row"><span class="field-name">radius</span><span class="field-type">Int</span><span class="field-mod">// km</span></div>
+        <div class="field-row"><span class="field-name">catalogItems</span><span class="field-type">CatalogItem[]</span><span class="field-mod">relation</span></div>
+      </div>
+    </div>
+
+    <div class="model-card">
+      <div class="model-header"><span class="model-name">ShareToken</span><span class="model-desc">Token de partage de fiche technique</span></div>
+      <div class="model-fields">
+        <div class="field-row"><span class="field-name field-pk">id</span><span class="field-type">String</span><span class="field-mod">@id @default(cuid())</span></div>
+        <div class="field-row"><span class="field-name">houseId</span><span class="field-type">String</span><span class="field-mod"></span></div>
+        <div class="field-row"><span class="field-name">token</span><span class="field-type">String</span><span class="field-mod">@unique @default(uuid())</span></div>
+        <div class="field-row"><span class="field-name">profile</span><span class="field-type">ShareProfile</span><span class="field-mod">// BUYER | TENANT | PRO</span></div>
+        <div class="field-row"><span class="field-name">expiresAt</span><span class="field-type">DateTime?</span><span class="field-mod"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 11. SSE ═══ -->
+  <section class="section" id="realtime">
+    <div class="section-header">
+      <div class="section-number">11 — Temps réel</div>
+      <h2 class="section-title">Messagerie SSE (Server-Sent Events)</h2>
+    </div>
+
+    <div class="note">
+      <strong>Pas de WebSocket.</strong> L'app utilise SSE (unidirectionnel serveur → client). Pour envoyer, le client fait un POST classique. Pour recevoir en temps réel, il s'abonne au stream GET.
+    </div>
+
+    <p style="font-size:14px;color:var(--t2);margin-bottom:12px">Implémentation côté serveur (SvelteKit +server.ts) :</p>
+    <pre><span class="cmt">// src/routes/api/conversations/[id]/stream/+server.ts</span>
+<span class="kw">export</span> <span class="kw">const</span> <span class="fn">GET</span>: <span class="tp">RequestHandler</span> = ({ params, locals }) => {
+  <span class="kw">const</span> { id } = params
+  <span class="kw">const</span> stream = <span class="kw">new</span> <span class="tp">ReadableStream</span>({
+    start(controller) {
+      <span class="cmt">// Poll DB toutes les 2s ou utiliser pg LISTEN/NOTIFY</span>
+      <span class="kw">const</span> interval = setInterval(<span class="kw">async</span> () => {
+        <span class="kw">const</span> msgs = <span class="kw">await</span> getNewMessages(id, lastSeenAt)
+        msgs.forEach(m => {
+          controller.enqueue(<span class="str">`data: ${JSON.stringify(m)}\n\n`</span>)
+        })
+      }, <span class="num">2000</span>)
+      <span class="kw">return</span> () => clearInterval(interval)
+    }
+  })
+  <span class="kw">return</span> <span class="kw">new</span> <span class="tp">Response</span>(stream, {
+    headers: { <span class="str">'Content-Type'</span>: <span class="str">'text/event-stream'</span>, <span class="str">'Cache-Control'</span>: <span class="str">'no-cache'</span> }
+  })
+}</pre>
+
+    <p style="font-size:14px;color:var(--t2);margin-bottom:12px">Connexion côté client (Svelte) :</p>
+    <pre><span class="cmt">// Dans le composant conversation</span>
+<span class="kw">let</span> messages = $state([])
+onMount(() => {
+  <span class="kw">const</span> es = <span class="kw">new</span> EventSource(<span class="str">`/api/conversations/${id}/stream`</span>)
+  es.onmessage = (e) => {
+    messages = [...messages, JSON.parse(e.data)]
+  }
+  <span class="kw">return</span> () => es.close()
+})</pre>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 12. HORS SCOPE ═══ -->
+  <section class="section" id="hors-scope">
+    <div class="section-header">
+      <div class="section-number">12 — Hors périmètre</div>
+      <h2 class="section-title">Ne pas implémenter en V1</h2>
+    </div>
+    <div class="card-grid">
+      <div class="card" style="border-left:3px solid var(--fix)">
+        <div class="card-title" style="color:var(--fix)">Estimation / Devis construction</div>
+        <div class="card-sub">Aucun module de calcul de coût de travaux, d'estimation de rénovation ou de devis construction. Ce périmètre est explicitement exclu de V1.</div>
+      </div>
+      <div class="card" style="border-left:3px solid var(--fix)">
+        <div class="card-title" style="color:var(--fix)">Paiement en ligne</div>
+        <div class="card-sub">V1 = listing + chat uniquement. La transaction se fait hors app. Pas de Stripe, pas de paiement intégré.</div>
+      </div>
+      <div class="card" style="border-left:3px solid var(--fix)">
+        <div class="card-title" style="color:var(--fix)">Multi-logements</div>
+        <div class="card-sub">Un seul logement par compte en V1. La contrainte @unique sur userId dans House le garantit côté base.</div>
+      </div>
+      <div class="card" style="border-left:3px solid var(--fix)">
+        <div class="card-title" style="color:var(--fix)">Notifications push</div>
+        <div class="card-sub">Uniquement un badge dans l'app (unread count). Pas de push notifications système, pas de service worker.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 13. LIVRABLES ═══ -->
+  <section class="section" id="assets">
+    <div class="section-header">
+      <div class="section-number">13 — Livrables disponibles</div>
+      <h2 class="section-title">Ce qui est déjà fait</h2>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-title">Wireframes lo-fi interactifs</div>
+        <div class="card-sub">32 écrans navigables. <code>DOC/wireframes.html</code> — à ouvrir directement dans un navigateur.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Prototype hi-fi React</div>
+        <div class="card-sub">Prototype mobile complet dans <code>DOC/Passeport Maison Design System/ui_kits/mobile/</code>. Servir avec <code>npx serve . -p 8734</code>.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Design system tokens</div>
+        <div class="card-sub">Couleurs et typographie dans <code>DOC/Passeport Maison Design System/colors_and_type.css</code>.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Éditeur open3dFloorplan</div>
+        <div class="card-sub">Éditeur 2D/3D fonctionnel à la racine du repo. À intégrer dans la route <code>/editor</code> de SvelteKit.</div>
+      </div>
+    </div>
+    <div class="info-note" style="margin-top:16px">
+      <strong>Repo :</strong> <code>e:\Developpement\ID House\open3dFloorplan-main</code> · Branche de travail recommandée : <code>feature/sveltekit-app</code> depuis <code>main</code>.
+    </div>
+  </section>
+
+</main>
+</div>
+
+<script>
+// Active link tracking
+const links = document.querySelectorAll('.sb-link')
+const sections = document.querySelectorAll('section[id]')
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      links.forEach(l => l.classList.remove('active'))
+      const a = document.querySelector(`.sb-link[href="#${e.target.id}"]`)
+      if(a) a.classList.add('active')
+    }
+  })
+}, {threshold:0.15, rootMargin:'-60px 0px -70% 0px'})
+sections.forEach(s => obs.observe(s))
+</script>
