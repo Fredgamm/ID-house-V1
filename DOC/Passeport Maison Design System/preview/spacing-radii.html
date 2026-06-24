@@ -1,0 +1,32 @@
+<!-- @dsCard group="Spacing" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Radii</title>
+<link rel="stylesheet" href="_base.css"/>
+<style>
+  .h { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; }
+  .h .t { font-size: 13px; font-weight: 700; }
+  .h .r { font-size: 11px; color: var(--t2); }
+  .grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; }
+  .cell { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .sw { width: 100%; aspect-ratio: 1/1; background: #F0EFFB; border: 1px solid #CBC7FA; }
+  .lab { font-size: 10px; color: var(--t2); font-family: ui-monospace, monospace; }
+  .use { font-size: 9px; color: var(--t3); text-align: center; }
+</style>
+</head>
+<body>
+  <div class="h"><span class="t">Radius scale</span><span class="r">cards 12 · modals 20 · sheets 24 · avatars 50%</span></div>
+  <div class="grid">
+    <div class="cell"><div class="sw" style="border-radius:8px"></div><span class="lab">8</span><span class="use">inputs</span></div>
+    <div class="cell"><div class="sw" style="border-radius:10px"></div><span class="lab">10</span><span class="use">badges-lg</span></div>
+    <div class="cell"><div class="sw" style="border-radius:12px"></div><span class="lab">12</span><span class="use">cards</span></div>
+    <div class="cell"><div class="sw" style="border-radius:14px"></div><span class="lab">14</span><span class="use">buttons</span></div>
+    <div class="cell"><div class="sw" style="border-radius:16px"></div><span class="lab">16</span><span class="use">value</span></div>
+    <div class="cell"><div class="sw" style="border-radius:20px"></div><span class="lab">20</span><span class="use">modals</span></div>
+    <div class="cell"><div class="sw" style="border-radius:24px 24px 0 0"></div><span class="lab">24</span><span class="use">sheets</span></div>
+    <div class="cell"><div class="sw" style="border-radius:50%"></div><span class="lab">50%</span><span class="use">avatars</span></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Pricing tiers</title>
+<link rel="stylesheet" href="_base.css"/>
+<style>
+  body { background: #F7F7FD; }
+  .h { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; }
+  .h .t { font-size: 13px; font-weight: 700; }
+  .h .r { font-size: 11px; color: var(--t2); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .tier { background: #FFFFFF; border: 1px solid #E0DEF7; border-radius: 14px; padding: 14px; display:flex;flex-direction:column;gap:8px; position: relative; }
+  .tier.feat { background: linear-gradient(180deg, #F7F7FD 0%, #FFFFFF 50%); border-color: #CBC7FA; }
+  .tier.pro { background: linear-gradient(180deg, #5245ED 0%, #7065F0 100%); border-color: transparent; color: #FFFFFF; }
+  .tier .name { font-size: 12px; font-weight: 700; color: #7065F0; text-transform: uppercase; letter-spacing: 0.05em; }
+  .tier.pro .name { color: #E0DEF7; }
+  .tier .price { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.005em; color: #000929; }
+  .tier.pro .price { color: #FFFFFF; }
+  .tier .price small { font-size: 11px; font-weight: 500; color: #6B7280; }
+  .tier.pro .price small { color: #E0DEF7; }
+  .tier ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; font-size: 11px; color: #4D5461; }
+  .tier.pro ul { color: #F0EFFB; }
+  .tier ul li::before { content: '✓ '; color: #16A34A; font-weight: 700; }
+  .tier.pro ul li::before { color: #86EFAC; }
+  .tier .cta { margin-top: 4px; border: 0; padding: 9px 12px; border-radius: 10px; font-size: 12px; font-weight: 700; cursor: pointer; }
+  .tier .cta { background: #F0EFFB; color: #000929; }
+  .tier.feat .cta { background: #7065F0; color: #FFFFFF; }
+  .tier.pro .cta { background: #FFFFFF; color: #5245ED; }
+  .ribbon { position: absolute; top: -8px; right: 12px; background: #F59E0B; color: white; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 6px; }
+</style>
+</head>
+<body>
+  <div class="h"><span class="t">Pricing tier cards</span><span class="r">default · featured · pro-featured</span></div>
+  <div class="grid">
+    <div class="tier">
+      <span class="name">Gratuit</span>
+      <span class="price">0 €<small> /mois</small></span>
+      <ul><li>Jusqu'à 10 équipements</li><li>3 documents</li><li>Vue publique limitée</li></ul>
+      <button class="cta">Plan actuel</button>
+    </div>
+    <div class="tier feat">
+      <span class="ribbon">POPULAIRE</span>
+      <span class="name">Premium</span>
+      <span class="price">9,99 €<small> /mois</small></span>
+      <ul><li>Équipements illimités</li><li>Estimation IA</li><li>Export notaire PDF</li></ul>
+      <button class="cta">Choisir Premium</button>
+    </div>
+    <div class="tier pro">
+      <span class="name">Pro</span>
+      <span class="price">29 €<small> /mois</small></span>
+      <ul><li>Vitrine pro vérifiée</li><li>Catalogue services</li><li>Messages clients</li></ul>
+      <button class="cta">Devenir Pro</button>
+    </div>
+  </div>
+</body>
+</html>

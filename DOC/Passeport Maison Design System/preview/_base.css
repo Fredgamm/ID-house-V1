@@ -1,0 +1,33 @@
+/* Card chrome for the Design System preview tiles */
+@import url('../colors_and_type.css');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  font-family: var(--font-sans);
+  color: var(--text);
+  background: var(--surface-default);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body {
+  padding: 20px;
+  min-height: 100vh;
+}
+.card-wrap {
+  width: 100%;
+}
+.row { display: flex; align-items: center; gap: 12px; }
+.col { display: flex; flex-direction: column; gap: 12px; }
+.grid { display: grid; gap: 8px; }
+.muted { color: var(--t2); }
+.muted2 { color: var(--t3); }
+.meta { font-size: 11px; color: var(--t3); font-family: ui-monospace, 'SF Mono', Menlo, monospace; }
+.label { font-size: 11px; color: var(--t2); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+.swatch { border-radius: 10px; border: 1px solid var(--border); }
+.tag {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 8px; border-radius: 6px;
+  font-size: 11px; font-weight: 600;
+  background: var(--surface-muted); color: var(--t2);
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+}

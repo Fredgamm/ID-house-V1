@@ -1,0 +1,38 @@
+<!-- @dsCard group="Colors" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Semantic colors</title>
+<link rel="stylesheet" href="_base.css"/>
+<style>
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .cell { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .top { height: 56px; display:flex; align-items:center; justify-content:center; color: white; font-weight: 700; font-size: 12px; letter-spacing: 0.02em; font-family: ui-monospace, monospace; }
+  .pair { padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; }
+  .pair .pill { padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 600; }
+  .pair .nm { font-size: 11px; font-weight: 600; color: var(--text); }
+  .pair .hex { font-size: 10px; color: var(--t3); font-family: ui-monospace, monospace; }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="cell">
+      <div class="top" style="background:#16A34A">SUCCESS</div>
+      <div class="pair"><span class="pill" style="background:#DCFCE7;color:#15803D">Validé</span><span class="hex">#16A34A</span></div>
+    </div>
+    <div class="cell">
+      <div class="top" style="background:#F59E0B">WARNING</div>
+      <div class="pair"><span class="pill" style="background:#FEF3C7;color:#B45309">Attention</span><span class="hex">#F59E0B</span></div>
+    </div>
+    <div class="cell">
+      <div class="top" style="background:#DC2626">DANGER</div>
+      <div class="pair"><span class="pill" style="background:#FEE2E2;color:#B91C1C">Erreur</span><span class="hex">#DC2626</span></div>
+    </div>
+    <div class="cell">
+      <div class="top" style="background:#0369A1">INFO</div>
+      <div class="pair"><span class="pill" style="background:#E0F2FE;color:#075985">Astuce</span><span class="hex">#0369A1</span></div>
+    </div>
+  </div>
+</body>
+</html>

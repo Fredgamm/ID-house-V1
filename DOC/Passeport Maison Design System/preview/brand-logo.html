@@ -1,0 +1,39 @@
+<!-- @dsCard group="Brand" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Logo</title>
+<link rel="stylesheet" href="_base.css"/>
+<style>
+  body { padding: 0; }
+  .logo-card { display: grid; grid-template-columns: 1fr 1fr; min-height: 180px; }
+  .panel { padding: 24px; display: flex; align-items: center; justify-content: center; gap: 14px; }
+  .panel.light { background: var(--surface-default); }
+  .panel.dark  { background: #0B0F17; }
+  .mark { width: 56px; height: 56px; }
+  .name { display: flex; flex-direction: column; }
+  .name .t1 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.01em; }
+  .name .t2 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.01em; color: var(--t2); }
+  .dark .name .t1 { color: #FFFFFF; }
+  .dark .name .t2 { color: #6C727F; }
+  .corner { position: absolute; top: 10px; left: 14px; font-size: 10px; color: var(--t3); font-family: ui-monospace, monospace; }
+  .dark .corner { color: #6B7280; }
+  .panel { position: relative; }
+</style>
+</head>
+<body>
+  <div class="logo-card">
+    <div class="panel light">
+      <span class="corner">light</span>
+      <img class="mark" src="../assets/logo-mark.svg" alt="logo"/>
+      <div class="name"><span class="t1">Passeport</span><span class="t2">Maison</span></div>
+    </div>
+    <div class="panel dark">
+      <span class="corner">dark</span>
+      <img class="mark" src="../assets/logo-mark.svg" alt="logo"/>
+      <div class="name"><span class="t1">Passeport</span><span class="t2">Maison</span></div>
+    </div>
+  </div>
+</body>
+</html>

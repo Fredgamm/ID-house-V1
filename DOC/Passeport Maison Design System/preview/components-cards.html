@@ -1,0 +1,80 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Cards</title>
+<link rel="stylesheet" href="_base.css"/>
+<style>
+  body { background: #F7F7FD; }
+  .h { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+  .h .t { font-size: 13px; font-weight: 700; }
+  .h .r { font-size: 11px; color: var(--t2); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .card { background: #FFFFFF; border: 1px solid #E0DEF7; border-radius: 12px; padding: 14px; box-shadow: 0 1px 2px rgba(0,9,41,0.04), 0 1px 3px rgba(0,9,41,0.06); }
+  .row { display: flex; align-items: center; gap: 12px; }
+
+  /* equipment item */
+  .ico { width: 44px; height: 44px; border-radius: 10px; display:flex; align-items:center; justify-content:center; font-size: 20px; flex-shrink: 0; }
+  .name { font-size: 14px; font-weight: 600; }
+  .meta { font-size: 11px; color: #6B7280; }
+  .price { margin-left: auto; font-size: 14px; font-weight: 700; color: #000929; }
+  .badge { display:inline-flex; align-items:center; padding:2px 6px; border-radius:5px; font-size:10px; font-weight:600; margin-left: 6px; }
+
+  /* conversation item */
+  .av { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #F0EFFB, #CBC7FA); display:flex;align-items:center;justify-content:center;font-weight:700;color:#5245ED;font-size:14px; flex-shrink: 0; }
+  .conv-body { flex: 1; min-width: 0; }
+  .conv-top { display:flex;justify-content:space-between;align-items:baseline; }
+  .conv-name { font-size: 14px; font-weight: 600; }
+  .conv-time { font-size: 10px; color: #6C727F; }
+  .conv-prev { font-size: 12px; color: #6B7280; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px; }
+  .dot { width: 18px; height: 18px; border-radius: 50%; background: #7065F0; color: white; font-size: 10px; font-weight: 700; display:flex;align-items:center;justify-content:center; margin-left: 8px; }
+</style>
+</head>
+<body>
+  <div class="h"><span class="t">Cards · equipment + conversation</span><span class="r">radius 12 · border + shadow-sm</span></div>
+  <div class="grid">
+    <div class="card">
+      <div class="row">
+        <div class="ico" style="background:#FEE2E2;color:#B91C1C"><i data-lucide="snowflake"></i></i></div>
+        <div>
+          <div class="name">Climatisation Daikin</div>
+          <div class="meta">Salon · 2022 <span class="badge" style="background:#FEE2E2;color:#B91C1C">Fixe</span></div>
+        </div>
+        <span class="price">1 850 €</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="row">
+        <div class="ico" style="background:#EDE9FE;color:#6D28D9"><i data-lucide="sofa"></i></i></div>
+        <div>
+          <div class="name">Canapé Roche Bobois</div>
+          <div class="meta">Salon · 2021 <span class="badge" style="background:#EDE9FE;color:#6D28D9">Mobilier</span></div>
+        </div>
+        <span class="price">3 200 €</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="row">
+        <div class="av">MD</div>
+        <div class="conv-body">
+          <div class="conv-top"><span class="conv-name">Maxime Durand</span><span class="conv-time">14:32</span></div>
+          <div class="conv-prev">Bonjour, je serais disponible jeudi pour le devis…</div>
+        </div>
+        <span class="dot">2</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="row">
+        <div class="av" style="background:linear-gradient(135deg,#DCFCE7,#86EFAC);color:#15803D">EP</div>
+        <div class="conv-body">
+          <div class="conv-top"><span class="conv-name">Élise Perret <span class="badge" style="background:#DCFCE7;color:#15803D;margin-left:4px">Pro</span></span><span class="conv-time">Hier</span></div>
+          <div class="conv-prev">Merci pour votre confiance ! Je vous envoie…</div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script src="https://unpkg.com/lucide@0.453.0/dist/umd/lucide.min.js"></script>
+<script>lucide.createIcons({attrs:{width:'1em',height:'1em','stroke-width':1.75}});</script>
+</body>
+</html>

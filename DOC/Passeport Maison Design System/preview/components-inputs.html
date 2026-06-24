@@ -1,0 +1,67 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Inputs</title>
+<link rel="stylesheet" href="_base.css"/>
+<style>
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  .h { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+  .h .t { font-size: 13px; font-weight: 700; color: #000929; }
+  .h .r { font-size: 11px; color: #6C727F; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .lab { font-size: 13px; font-weight: 600; color: #000929; }
+  .inp {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 16px; color: #000929;
+    background: #FFFFFF;
+    border: 1.5px solid #E0DEF7;
+    border-radius: 8px;
+    padding: 14px 16px;
+    outline: none;
+    width: 100%;
+    font-weight: 500;
+  }
+  .inp::placeholder { color: #6C727F; }
+  .inp.focus { border-color: #7065F0; box-shadow: 0 0 0 4px rgba(112,101,240,0.12); }
+  .inp.error { border-color: #DC2626; }
+  .helper { font-size: 12px; color: #6C727F; font-weight: 500; }
+  .helper.err { color: #DC2626; }
+  .with-icon { position: relative; }
+  .with-icon .inp { padding-left: 44px; }
+  .with-icon .ic { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #6C727F; pointer-events: none; }
+</style>
+<script src="https://unpkg.com/lucide@0.453.0/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+  <div class="h"><span class="t">Inputs</span><span class="r">radius 8 · 1.5px border · focus ring purple</span></div>
+  <div class="grid">
+    <div class="field">
+      <span class="lab">Adresse du bien</span>
+      <input class="inp" placeholder="12 rue de la Paix, Paris"/>
+      <span class="helper">Visible uniquement par vous</span>
+    </div>
+    <div class="field">
+      <span class="lab">Surface (m²)</span>
+      <input class="inp focus" value="68"/>
+      <span class="helper">Champ actif — focus ring violet</span>
+    </div>
+    <div class="field">
+      <span class="lab">Email</span>
+      <input class="inp error" value="proprietaire@" />
+      <span class="helper err">Adresse email invalide</span>
+    </div>
+    <div class="field">
+      <span class="lab">Rechercher un équipement</span>
+      <div class="with-icon">
+        <i class="ic" data-lucide="search"></i>
+        <input class="inp" placeholder="Marque ou modèle…"/>
+      </div>
+      <span class="helper">Avec icône préfixe</span>
+    </div>
+  </div>
+  <script>lucide.createIcons({attrs:{width:18,height:18,'stroke-width':2}});</script>
+</body>
+</html>

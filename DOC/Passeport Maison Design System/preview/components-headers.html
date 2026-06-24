@@ -1,0 +1,46 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Headers + status bar</title>
+<link rel="stylesheet" href="_base.css"/>
+<style>
+  body { background: #F7F7FD; }
+  .h { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; }
+  .h .t { font-size: 13px; font-weight: 700; }
+  .h .r { font-size: 11px; color: var(--t2); }
+  .stack { display: flex; flex-direction: column; gap: 10px; }
+
+  .device { width: 100%; background: #FFFFFF; border: 1px solid #E0DEF7; border-radius: 14px; overflow: hidden; }
+  .device.dark { background: #141A24; border-color: #1F2937; }
+  .sb { display: flex; justify-content: space-between; align-items: center; padding: 8px 22px 6px; font-size: 12px; font-weight: 600; color: #000929; }
+  .sb.dark { color: #FFFFFF; }
+  .sb .right { display: flex; gap: 6px; align-items: center; font-size: 11px; }
+  .hdr { display: grid; grid-template-columns: 36px 1fr 36px; align-items: center; padding: 10px 16px 14px; gap: 8px; }
+  .hdr .back { width: 32px; height: 32px; border-radius: 50%; background: #F0EFFB; display:flex;align-items:center;justify-content:center; color: #000929; font-size: 16px; }
+  .hdr.dark .back { background: #1F2937; color: #F7F7FD; }
+  .hdr .title { font-size: 16px; font-weight: 700; }
+  .hdr.dark .title { color: #F7F7FD; }
+  .hdr .sub { font-size: 11px; color: #6B7280; }
+  .hdr.dark .sub { color: #6C727F; }
+  .hdr .action { width: 32px; height: 32px; border-radius: 50%; background: transparent; display:flex;align-items:center;justify-content:center; color: #7065F0; font-size: 18px; }
+  .hdr.dark .action { color: #A8A2F6; }
+</style>
+</head>
+<body>
+  <div class="h"><span class="t">Status bar + header</span><span class="r">sb 47h · hdr 56h · variants light/dark</span></div>
+  <div class="stack">
+    <div class="device">
+      <div class="sb"><span>9:41</span><span class="right"><i data-lucide="signal"></i></i><i data-lucide="wifi"></i></i><i data-lucide="battery-full"></i></i></span></div>
+      <div class="hdr"><div class="back"><i data-lucide="chevron-left"></i></i></div><div><div class="title">Équipements</div><div class="sub">14 enregistrés · 68 m²</div></div><div class="action"><i data-lucide="plus"></i></i></div></div>
+    </div>
+    <div class="device dark">
+      <div class="sb dark"><span>9:41</span><span class="right"><i data-lucide="signal"></i></i><i data-lucide="wifi"></i></i><i data-lucide="battery-full"></i></i></span></div>
+      <div class="hdr dark"><div class="back"><i data-lucide="chevron-left"></i></i></div><div><div class="title">Équipements</div><div class="sub">14 enregistrés · 68 m²</div></div><div class="action"><i data-lucide="plus"></i></i></div></div>
+    </div>
+  </div>
+<script src="https://unpkg.com/lucide@0.453.0/dist/umd/lucide.min.js"></script>
+<script>lucide.createIcons({attrs:{width:'1em',height:'1em','stroke-width':1.75}});</script>
+</body>
+</html>

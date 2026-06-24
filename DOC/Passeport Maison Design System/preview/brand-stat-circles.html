@@ -1,0 +1,44 @@
+<!-- @dsCard group="Brand" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Stat circle pattern</title>
+<link rel="stylesheet" href="_base.css"/>
+<style>
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; padding: 24px; background: linear-gradient(180deg, #E0DEF7 0%, rgba(224,222,247,0) 100%); }
+  .head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px; }
+  .head .t { font-size: 13px; font-weight: 700; color: #000929; }
+  .head .ref { font-size: 11px; color: #6C727F; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start; }
+  .stat { display: flex; flex-direction: column; gap: 14px; }
+  .ico-wrap { width: 64px; height: 64px; border-radius: 50%; background: #FFFFFF; border: 1.5px solid #E0DEF7; padding: 4px; position: relative; }
+  .ico-inner { width: 100%; height: 100%; border-radius: 50%; background: #E0DEF7; display: flex; align-items: center; justify-content: center; color: #2516DF; }
+  .badge { position: absolute; right: -2px; bottom: -2px; width: 24px; height: 24px; border-radius: 8px; background: #7065F0; color: #FFFFFF; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(112,101,240,0.4); }
+  .num { font-size: 20px; font-weight: 700; color: #7065F0; line-height: 1.4; }
+  .lbl { font-size: 14px; font-weight: 500; color: #000929; }
+</style>
+<script src="https://unpkg.com/lucide@0.453.0/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+  <div class="head">
+    <span class="t">Stat circle — Estatery signature pattern</span>
+    <span class="ref">64px outer · 56px inner fill · 24px corner badge</span>
+  </div>
+  <div class="grid">
+    <div class="stat">
+      <div class="ico-wrap"><div class="ico-inner"><i data-lucide="users"></i></div><div class="badge"><i data-lucide="key" style="width:14px;height:14px;"></i></div></div>
+      <div><div class="num">50k+ propriétaires</div><div class="lbl">utilisent Passeport Maison</div></div>
+    </div>
+    <div class="stat">
+      <div class="ico-wrap"><div class="ico-inner"><i data-lucide="building"></i></div><div class="badge"><i data-lucide="badge-check" style="width:14px;height:14px;"></i></div></div>
+      <div><div class="num">10k+ biens</div><div class="lbl">documentés et valorisés</div></div>
+    </div>
+    <div class="stat">
+      <div class="ico-wrap"><div class="ico-inner"><i data-lucide="wrench"></i></div><div class="badge"><i data-lucide="star" style="width:14px;height:14px;"></i></div></div>
+      <div><div class="num">2k+ pros</div><div class="lbl">vérifiés près de chez vous</div></div>
+    </div>
+  </div>
+<script>lucide.createIcons({attrs:{width:32,height:32,'stroke-width':1.75}});</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Bottom nav</title>
+<link rel="stylesheet" href="_base.css"/>
+<style>
+  body { background: #F7F7FD; }
+  .h { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+  .h .t { font-size: 13px; font-weight: 700; }
+  .h .r { font-size: 11px; color: var(--t2); }
+  .stack { display: flex; flex-direction: column; gap: 12px; }
+  .nav {
+    background: #FFFFFF; border-radius: 16px;
+    box-shadow: 0 -1px 0 #E0DEF7, 0 12px 24px -8px rgba(0,9,41,0.06);
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    padding: 8px 6px 10px;
+  }
+  .nav.dark { background: #141A24; box-shadow: 0 -1px 0 #1F2937; }
+  .it { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 2px; }
+  .it i { font-size: 22px; color: #6C727F; }
+  .it .lab { font-size: 10px; color: #6C727F; font-weight: 500; }
+  .it.active i, .it.active .lab { color: #7065F0; }
+  .it.active .lab { font-weight: 600; }
+  .nav.dark .it i, .nav.dark .it .lab { color: #6B7280; }
+  .nav.dark .it.active i, .nav.dark .it.active .lab { color: #A8A2F6; }
+</style>
+</head>
+<body>
+  <div class="h"><span class="t">Bottom nav · 5 items max</span><span class="r">22px icon · 10px label · active = primary + fill</span></div>
+  <div class="stack">
+    <div class="nav">
+      <div class="it active"><i data-lucide="home"></i></i><span class="lab">Accueil</span></div>
+      <div class="it"><i data-lucide="layout-grid"></i></i><span class="lab">Plan</span></div>
+      <div class="it"><i data-lucide="package"></i></i><span class="lab">Équipements</span></div>
+      <div class="it"><i data-lucide="file-text"></i></i><span class="lab">Rapport</span></div>
+      <div class="it"><i data-lucide="store"></i></i><span class="lab">Marché</span></div>
+    </div>
+    <div class="nav dark">
+      <div class="it active"><i data-lucide="home"></i></i><span class="lab">Accueil</span></div>
+      <div class="it"><i data-lucide="layout-grid"></i></i><span class="lab">Plan</span></div>
+      <div class="it"><i data-lucide="package"></i></i><span class="lab">Équipements</span></div>
+      <div class="it"><i data-lucide="file-text"></i></i><span class="lab">Rapport</span></div>
+      <div class="it"><i data-lucide="store"></i></i><span class="lab">Marché</span></div>
+    </div>
+  </div>
+<script src="https://unpkg.com/lucide@0.453.0/dist/umd/lucide.min.js"></script>
+<script>lucide.createIcons({attrs:{width:'1em',height:'1em','stroke-width':1.75}});</script>
+</body>
+</html>

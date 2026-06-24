@@ -1,0 +1,60 @@
+<!-- @dsCard group="Brand" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Iconography</title>
+<link rel="stylesheet" href="_base.css"/>
+<style>
+  .h { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+  .h .t { font-size: 13px; font-weight: 700; }
+  .h .r { font-size: 11px; color: var(--t2); }
+  .grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px; }
+  .cell { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 4px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface-card); }
+  .cell i { font-size: 22px; color: #000929; }
+  .cell .nm { font-size: 9px; color: var(--t3); font-family: ui-monospace, monospace; }
+  .lab-l { font-size: 10px; color: var(--t3); font-family: ui-monospace, monospace; margin: 10px 0 6px; display: block; }
+</style>
+</head>
+<body>
+  <div class="h"><span class="t">Iconography · Phosphor Icons</span><span class="r">regular · 22px nav · 20px lists · inherits currentColor</span></div>
+
+  <span class="lab-l">NAV · OWNER</span>
+  <div class="grid">
+    <div class="cell"><i data-lucide="home"></i></i><span class="nm">house</span></div>
+    <div class="cell"><i data-lucide="layout-grid"></i></i><span class="nm">squares-four</span></div>
+    <div class="cell"><i data-lucide="package"></i></i><span class="nm">package</span></div>
+    <div class="cell"><i data-lucide="file-text"></i></i><span class="nm">file-text</span></div>
+    <div class="cell"><i data-lucide="store"></i></i><span class="nm">storefront</span></div>
+    <div class="cell"><i data-lucide="message-circle"></i></i><span class="nm">chat</span></div>
+    <div class="cell"><i data-lucide="user-circle-2"></i></i><span class="nm">profile</span></div>
+    <div class="cell"><i data-lucide="settings"></i></i><span class="nm">settings</span></div>
+  </div>
+
+  <span class="lab-l">ROOMS</span>
+  <div class="grid">
+    <div class="cell"><i data-lucide="armchair"></i></i><span class="nm">salon</span></div>
+    <div class="cell"><i data-lucide="cooking-pot"></i></i><span class="nm">cuisine</span></div>
+    <div class="cell"><i data-lucide="bed-double"></i></i><span class="nm">chambre</span></div>
+    <div class="cell"><i data-lucide="bath"></i></i><span class="nm">salle de bain</span></div>
+    <div class="cell"><i data-lucide="briefcase"></i></i><span class="nm">bureau</span></div>
+    <div class="cell"><i data-lucide="route"></i></i><span class="nm">couloir</span></div>
+    <div class="cell"><i data-lucide="warehouse"></i></i><span class="nm">garage</span></div>
+    <div class="cell"><i data-lucide="trees"></i></i><span class="nm">terrasse</span></div>
+  </div>
+
+  <span class="lab-l">ACTIONS &amp; STATES</span>
+  <div class="grid">
+    <div class="cell"><i data-lucide="search"></i></i><span class="nm">search</span></div>
+    <div class="cell"><i data-lucide="filter"></i></i><span class="nm">filter</span></div>
+    <div class="cell"><i data-lucide="plus"></i></i><span class="nm">add</span></div>
+    <div class="cell" style="color:#075985"><i data-lucide="sparkles" style="color:#075985"></i></i><span class="nm">ai</span></div>
+    <div class="cell" style="color:#15803D"><i data-lucide="badge-check" style="color:#15803D"></i></i><span class="nm">verified</span></div>
+    <div class="cell" style="color:#B45309"><i data-lucide="crown" style="color:#B45309"></i></i><span class="nm">premium</span></div>
+    <div class="cell"><i data-lucide="share-2"></i></i><span class="nm">share</span></div>
+    <div class="cell"><i data-lucide="download"></i></i><span class="nm">download</span></div>
+  </div>
+<script src="https://unpkg.com/lucide@0.453.0/dist/umd/lucide.min.js"></script>
+<script>lucide.createIcons({attrs:{width:'1em',height:'1em','stroke-width':1.75}});</script>
+</body>
+</html>

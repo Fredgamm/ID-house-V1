@@ -1,0 +1,62 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Tabs and chips</title>
+<link rel="stylesheet" href="_base.css"/>
+<style>
+  .h { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; }
+  .h .t { font-size: 13px; font-weight: 700; }
+  .h .r { font-size: 11px; color: var(--t2); }
+  .stack { display: flex; flex-direction: column; gap: 14px; }
+
+  .seg { display: grid; grid-template-columns: repeat(3, 1fr); padding: 3px; background: #F0EFFB; border-radius: 10px; }
+  .seg .it { padding: 8px 10px; text-align: center; font-size: 13px; font-weight: 600; color: #6B7280; border-radius: 8px; cursor: pointer; }
+  .seg .it.active { background: #FFFFFF; color: #000929; box-shadow: 0 1px 2px rgba(0,9,41,0.08); }
+
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip { padding: 6px 12px; border-radius: 999px; font-size: 12px; font-weight: 600; background: #F0EFFB; color: #4D5461; cursor: pointer; border: 1px solid transparent; }
+  .chip.active { background: #F0EFFB; color: #5245ED; border-color: #CBC7FA; }
+
+  .pro-nav { display: grid; grid-template-columns: repeat(4, 1fr); background: #FFFFFF; border-radius: 14px; border: 1px solid #E0DEF7; padding: 6px; }
+  .pro-nav .it { display:flex; flex-direction:column; align-items:center; gap:2px; padding: 6px 4px; border-radius: 10px; }
+  .pro-nav .it i { font-size: 20px; color: #6C727F; }
+  .pro-nav .it .lab { font-size: 10px; color: #6C727F; font-weight: 600; }
+  .pro-nav .it.active { background: #F7F7FD; }
+  .pro-nav .it.active i, .pro-nav .it.active .lab { color: #7065F0; }
+  .lab-l { font-size: 10px; color: var(--t3); font-family: ui-monospace, monospace; margin-bottom: 4px; display: block; }
+</style>
+</head>
+<body>
+  <div class="h"><span class="t">Tabs · chips · pro nav</span><span class="r">segment 10r · chip pill · pro nav 14r</span></div>
+
+  <div class="stack">
+    <div>
+      <span class="lab-l">SEGMENT CONTROL</span>
+      <div class="seg"><div class="it active">Pièces</div><div class="it">Équipements</div><div class="it">Documents</div></div>
+    </div>
+    <div>
+      <span class="lab-l">FILTER CHIPS (scroll-h)</span>
+      <div class="chips">
+        <div class="chip active">Tout</div>
+        <div class="chip">Fixe</div>
+        <div class="chip">Mobilier</div>
+        <div class="chip">Électroménager</div>
+        <div class="chip">Outils</div>
+      </div>
+    </div>
+    <div>
+      <span class="lab-l">PRO BOTTOM NAV — 4 items</span>
+      <div class="pro-nav">
+        <div class="it active"><i data-lucide="trending-up"></i></i><span class="lab">Dashboard</span></div>
+        <div class="it"><i data-lucide="list"></i></i><span class="lab">Catalogue</span></div>
+        <div class="it"><i data-lucide="message-circle"></i></i><span class="lab">Messages</span></div>
+        <div class="it"><i data-lucide="store"></i></i><span class="lab">Vitrine</span></div>
+      </div>
+    </div>
+  </div>
+<script src="https://unpkg.com/lucide@0.453.0/dist/umd/lucide.min.js"></script>
+<script>lucide.createIcons({attrs:{width:'1em',height:'1em','stroke-width':1.75}});</script>
+</body>
+</html>

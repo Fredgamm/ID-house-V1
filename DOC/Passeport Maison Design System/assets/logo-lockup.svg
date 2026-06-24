@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" fill="none">
+  <rect width="48" height="48" rx="10" fill="#7065F0"></rect>
+  <path d="M12 22.5L24 13l12 9.5V35a2 2 0 0 1-2 2h-6.5v-8.5a3.5 3.5 0 1 0-7 0V37H14a2 2 0 0 1-2-2V22.5Z" fill="#FFFFFF"></path>
+  <circle cx="35" cy="14" r="5.5" fill="#A8A2F6" stroke="#FFFFFF" stroke-width="2"></circle>
+  <text x="60" y="22" font-family="Plus Jakarta Sans, -apple-system, sans-serif" font-size="16" font-weight="700" fill="#000929" letter-spacing="-0.01em">Passeport</text>
+  <text x="60" y="40" font-family="Plus Jakarta Sans, -apple-system, sans-serif" font-size="16" font-weight="500" fill="#6C727F" letter-spacing="-0.01em">Maison</text>
+</svg>

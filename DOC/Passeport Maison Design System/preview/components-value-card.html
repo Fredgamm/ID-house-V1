@@ -1,0 +1,45 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Value card</title>
+<link rel="stylesheet" href="_base.css"/>
+<style>
+  body { background: #F7F7FD; padding: 20px; }
+  .h { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+  .h .t { font-size: 13px; font-weight: 700; }
+  .h .r { font-size: 11px; color: var(--t2); }
+  .val { background: linear-gradient(135deg, #7065F0 0%, #5245ED 100%); color: white; border-radius: 16px; padding: 18px 20px; box-shadow: 0 4px 8px -2px rgba(112,101,240,0.25); }
+  .val .lab { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.75; }
+  .val .amt { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 44px; line-height: 0.95; font-weight: 400; letter-spacing: -0.005em; margin: 4px 0 12px; }
+  .delta { display:inline-flex; align-items:center; gap:4px; padding: 3px 8px; border-radius: 6px; background: rgba(255,255,255,0.16); font-size: 11px; font-weight: 600; }
+  .vrows { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 14px; border-top: 1px solid rgba(255,255,255,0.18); padding-top: 12px; }
+  .vrow { display: flex; flex-direction: column; gap: 2px; }
+  .vrow + .vrow { border-left: 1px solid rgba(255,255,255,0.18); padding-left: 12px; }
+  .vrow .k { font-size: 10px; opacity: 0.75; }
+  .vrow .v { font-size: 13px; font-weight: 700; }
+  .conf { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 11px; opacity: 0.85; }
+  .bar { flex: 1; height: 5px; border-radius: 3px; background: rgba(255,255,255,0.2); position: relative; overflow: hidden; }
+  .bar .fill { position: absolute; left:0; top:0; bottom:0; width: 92%; background: #4ADE80; }
+</style>
+</head>
+<body>
+  <div class="h"><span class="t">Value card</span><span class="r">gradient 135° · Inter 800 · radius 16</span></div>
+  <div class="val">
+    <span class="lab">Votre patrimoine</span>
+    <div class="amt">428 500 €</div>
+    <span class="delta">↑ 12 400 € · 12 mois</span>
+    <div class="vrows">
+      <div class="vrow"><span class="k">Surface</span><span class="v">68 m²</span></div>
+      <div class="vrow"><span class="k">Équipements</span><span class="v">14</span></div>
+      <div class="vrow"><span class="k">Documents</span><span class="v">23</span></div>
+    </div>
+    <div class="conf">
+      <span>Confiance estimation</span>
+      <div class="bar"><div class="fill"></div></div>
+      <span style="font-weight:700">92 %</span>
+    </div>
+  </div>
+</body>
+</html>

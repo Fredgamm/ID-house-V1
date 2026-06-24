@@ -1,0 +1,63 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Bottom sheet + modal</title>
+<link rel="stylesheet" href="_base.css"/>
+<style>
+  body { background: #F7F7FD; }
+  .h { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; }
+  .h .t { font-size: 13px; font-weight: 700; }
+  .h .r { font-size: 11px; color: var(--t2); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .frame { aspect-ratio: 0.9/1; background: #6B7280; border-radius: 14px; overflow: hidden; position: relative; }
+  .frame::before { content:''; position:absolute;inset:0; background: url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=400') center/cover; opacity: 0.35; }
+  .sheet { position: absolute; left: 0; right: 0; bottom: 0; background: #FFFFFF; border-radius: 24px 24px 0 0; padding: 10px 18px 18px; box-shadow: 0 -12px 24px -8px rgba(0,0,0,0.18); }
+  .handle { width: 36px; height: 4px; border-radius: 2px; background: #D1D5DB; margin: 0 auto 12px; }
+  .sheet .title { font-size: 16px; font-weight: 700; }
+  .sheet .body { font-size: 12px; color: #6B7280; margin-top: 4px; }
+  .sheet .actions { display: flex; gap: 8px; margin-top: 12px; }
+  .btn { padding: 10px 14px; border-radius: 10px; font-size: 13px; font-weight: 600; border: 0; cursor: pointer; flex: 1; }
+  .b-prim { background: #7065F0; color: #FFFFFF; }
+  .b-sec  { background: #F0EFFB; color: #000929; }
+
+  .scrim { position: absolute; inset: 0; background: rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; padding: 16px; }
+  .modal { width: 100%; background: #FFFFFF; border-radius: 20px; padding: 18px; box-shadow: 0 24px 48px -12px rgba(0,0,0,0.3); }
+  .modal .crown { width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, #F59E0B, #DC2626); display:flex; align-items:center; justify-content:center; color: white; font-size: 22px; margin-bottom: 10px; }
+  .modal .ttl { font-size: 16px; font-weight: 700; }
+  .modal .desc { font-size: 12px; color: #6B7280; margin-top: 4px; }
+</style>
+</head>
+<body>
+  <div class="h"><span class="t">Bottom sheet · Modal</span><span class="r">sheet 24/24/0/0 · modal 20r · scale-in 200ms</span></div>
+  <div class="grid">
+    <div class="frame">
+      <div class="sheet">
+        <div class="handle"></div>
+        <div class="title">Ajouter un équipement</div>
+        <div class="body">Scannez le code-barres ou ajoutez manuellement.</div>
+        <div class="actions">
+          <button class="btn b-sec">Manuel</button>
+          <button class="btn b-prim">Scanner</button>
+        </div>
+      </div>
+    </div>
+    <div class="frame">
+      <div class="scrim">
+        <div class="modal">
+          <div class="crown"><i data-lucide="crown"></i></i></div>
+          <div class="ttl">Passez en Premium</div>
+          <div class="desc">Estimation IA, export PDF illimité, partage sécurisé avec votre notaire.</div>
+          <div class="actions" style="display:flex;gap:8px;margin-top:14px">
+            <button class="btn b-sec">Plus tard</button>
+            <button class="btn b-prim">9,99 € / mois</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script src="https://unpkg.com/lucide@0.453.0/dist/umd/lucide.min.js"></script>
+<script>lucide.createIcons({attrs:{width:'1em',height:'1em','stroke-width':1.75}});</script>
+</body>
+</html>

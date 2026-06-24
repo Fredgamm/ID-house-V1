@@ -1,0 +1,42 @@
+<!-- @dsCard group="Colors" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Gray + text scale</title>
+<link rel="stylesheet" href="_base.css"/>
+<style>
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  .scale { display: grid; grid-template-columns: repeat(11, 1fr); gap: 0; border-radius: 8px; overflow: hidden; border: 1.5px solid #E0DEF7; }
+  .step { height: 88px; display: flex; flex-direction: column; justify-content: flex-end; padding: 8px 6px; gap: 2px; }
+  .step .w { font-size: 10px; font-weight: 700; font-family: ui-monospace, monospace; }
+  .step .h { font-size: 9px; font-family: ui-monospace, monospace; opacity: 0.8; }
+  .light-text { color: rgba(0,9,41,0.85); }
+  .light-text .h { color: rgba(0,9,41,0.55); }
+  .dark-text { color: rgba(255,255,255,0.95); }
+  .dark-text .h { color: rgba(255,255,255,0.7); }
+  .head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+  .head .t { font-size: 13px; font-weight: 700; color: #000929; }
+  .head .ref { font-size: 11px; color: #6C727F; font-family: ui-monospace, monospace; }
+</style>
+</head>
+<body>
+  <div class="head">
+    <span class="t">Neutral &amp; text</span>
+    <span class="ref">text 900 · t2 600 · t3 500 · border #E0DEF7</span>
+  </div>
+  <div class="scale">
+    <div class="step light-text" style="background:#F7F7FD"><span class="w">50</span><span class="h">F9FAFB</span></div>
+    <div class="step light-text" style="background:#F0EFFB"><span class="w">100</span><span class="h">F0EFFB</span></div>
+    <div class="step light-text" style="background:#E0DEF7"><span class="w">200</span><span class="h">E5E7EB</span></div>
+    <div class="step light-text" style="background:#D1D5DB"><span class="w">300</span><span class="h">D1D5DB</span></div>
+    <div class="step light-text" style="background:#9EA3AE"><span class="w">400</span><span class="h">9EA3AE</span></div>
+    <div class="step dark-text"  style="background:#6C727F"><span class="w">500</span><span class="h">6C727F</span></div>
+    <div class="step dark-text"  style="background:#4D5461"><span class="w">600</span><span class="h">4D5461</span></div>
+    <div class="step dark-text"  style="background:#374151"><span class="w">700</span><span class="h">374151</span></div>
+    <div class="step dark-text"  style="background:#1F2937"><span class="w">800</span><span class="h">1F2937</span></div>
+    <div class="step dark-text"  style="background:#000929"><span class="w">900</span><span class="h">000929</span></div>
+    <div class="step dark-text"  style="background:#030712"><span class="w">950</span><span class="h">030712</span></div>
+  </div>
+</body>
+</html>

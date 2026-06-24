@@ -1,0 +1,31 @@
+<!-- @dsCard group="Type" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Display specimen</title>
+<link rel="stylesheet" href="_base.css"/>
+<style>
+  body { padding: 0; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  .card { padding: 28px 24px; background: linear-gradient(135deg, #7065F0 0%, #5245ED 100%); color: white; min-height: 220px; display: flex; flex-direction: column; justify-content: center; gap: 6px; position: relative; }
+  .label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.8; }
+  .v { font-size: 56px; font-weight: 800; line-height: 1; letter-spacing: -0.02em; }
+  .sub { font-size: 14px; opacity: 0.85; font-weight: 500; }
+  .row { display: flex; gap: 10px; margin-top: 10px; }
+  .row .pill { font-size: 12px; padding: 4px 12px; border-radius: 999px; background: rgba(255,255,255,0.15); font-weight: 600; }
+  .specs { position: absolute; top: 20px; right: 20px; font-family: ui-monospace, monospace; font-size: 10px; color: rgba(255,255,255,0.7); text-align: right; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="specs">Plus Jakarta Sans 800 · 56/1.0</div>
+    <span class="label">Votre patrimoine</span>
+    <span class="v">428 500 €</span>
+    <span class="sub">Confiance estimation : 92 %</span>
+    <div class="row">
+      <span class="pill">+ 12 400 € sur 12 mois</span>
+      <span class="pill">14 équipements</span>
+    </div>
+  </div>
+</body>
+</html>

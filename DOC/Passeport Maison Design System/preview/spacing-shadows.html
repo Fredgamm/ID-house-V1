@@ -1,0 +1,35 @@
+<!-- @dsCard group="Spacing" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Shadows</title>
+<link rel="stylesheet" href="_base.css"/>
+<style>
+  body { background: #F7F7FD; }
+  .h { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px; }
+  .h .t { font-size: 13px; font-weight: 700; }
+  .h .r { font-size: 11px; color: var(--t2); }
+  .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; padding: 8px 4px 24px; }
+  .cell { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .box { width: 100%; aspect-ratio: 1.2/1; background: #FFFFFF; border-radius: 12px; border: 1px solid #E0DEF7; }
+  .lab { font-size: 11px; font-weight: 700; font-family: ui-monospace, monospace; color: var(--t2); }
+  .use { font-size: 10px; color: var(--t3); }
+  .s-xs { box-shadow: 0 1px 2px rgba(0,9,41,0.04); }
+  .s-sm { box-shadow: 0 1px 3px rgba(0,9,41,0.06), 0 1px 2px rgba(0,9,41,0.04); }
+  .s-md { box-shadow: 0 4px 8px -2px rgba(0,9,41,0.08), 0 2px 4px -2px rgba(0,9,41,0.04); }
+  .s-lg { box-shadow: 0 12px 24px -8px rgba(0,9,41,0.12), 0 4px 8px -4px rgba(0,9,41,0.06); }
+  .s-xl { box-shadow: 0 24px 48px -12px rgba(0,9,41,0.18); }
+</style>
+</head>
+<body>
+  <div class="h"><span class="t">Elevation</span><span class="r">card = sm · sheet = lg · modal = xl</span></div>
+  <div class="grid">
+    <div class="cell"><div class="box s-xs"></div><span class="lab">xs</span><span class="use">flat ribs</span></div>
+    <div class="cell"><div class="box s-sm"></div><span class="lab">sm</span><span class="use">cards</span></div>
+    <div class="cell"><div class="box s-md"></div><span class="lab">md</span><span class="use">dropdowns</span></div>
+    <div class="cell"><div class="box s-lg"></div><span class="lab">lg</span><span class="use">sheets</span></div>
+    <div class="cell"><div class="box s-xl"></div><span class="lab">xl</span><span class="use">modals</span></div>
+  </div>
+</body>
+</html>

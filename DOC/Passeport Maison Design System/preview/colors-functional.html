@@ -1,0 +1,53 @@
+<!-- @dsCard group="Colors" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Functional pairs</title>
+<link rel="stylesheet" href="_base.css"/>
+<style>
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  .head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+  .head .t { font-size: 13px; font-weight: 700; color: #000929; }
+  .head .ref { font-size: 11px; color: #6C727F; }
+  .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+  .cell { border: 1.5px solid #E0DEF7; border-radius: 8px; padding: 12px; display:flex; flex-direction: column; gap: 8px; background: #FFFFFF; }
+  .cell .name { font-size: 11px; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; color: #6C727F; }
+  .badge { align-self: flex-start; padding: 3px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; }
+  .hex { font-size: 10px; color: #6C727F; font-family: ui-monospace, monospace; display: flex; flex-direction: column; gap: 2px; }
+</style>
+</head>
+<body>
+  <div class="head">
+    <span class="t">Functional pairs</span>
+    <span class="ref">soft bg + saturated text — badges, chips, icon tints</span>
+  </div>
+  <div class="grid">
+    <div class="cell">
+      <span class="name">fixed</span>
+      <span class="badge" style="background:#FEE2E2;color:#B91C1C">Équipement fixe</span>
+      <span class="hex">bg #FEE2E2 · text #B91C1C</span>
+    </div>
+    <div class="cell">
+      <span class="name">movable</span>
+      <span class="badge" style="background:#F0EFFB;color:#5245ED">Mobilier</span>
+      <span class="hex">bg #F0EFFB · text #5245ED</span>
+    </div>
+    <div class="cell">
+      <span class="name">pro</span>
+      <span class="badge" style="background:#DCFCE7;color:#15803D">Pro vérifié</span>
+      <span class="hex">bg #DCFCE7 · text #15803D</span>
+    </div>
+    <div class="cell">
+      <span class="name">premium</span>
+      <span class="badge" style="background:#FEF3C7;color:#B45309">Premium</span>
+      <span class="hex">bg #FEF3C7 · text #B45309</span>
+    </div>
+    <div class="cell">
+      <span class="name">ai</span>
+      <span class="badge" style="background:#E0F2FE;color:#075985">Suggéré IA</span>
+      <span class="hex">bg #E0F2FE · text #075985</span>
+    </div>
+  </div>
+</body>
+</html>

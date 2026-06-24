@@ -1,0 +1,51 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Badges</title>
+<link rel="stylesheet" href="_base.css"/>
+<style>
+  .h { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; }
+  .h .t { font-size: 13px; font-weight: 700; }
+  .h .r { font-size: 11px; color: var(--t2); }
+  .row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; align-items: center; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 8px; border-radius: 6px;
+    font-size: 11px; font-weight: 600; font-family: -apple-system, sans-serif;
+  }
+  .badge i { font-size: 12px; }
+  .lab { font-size: 10px; color: var(--t3); font-family: ui-monospace, monospace; width: 80px; }
+</style>
+</head>
+<body>
+  <div class="h"><span class="t">Badges</span><span class="r">compact · 11/600 · padding 3·8 · radius 6</span></div>
+  <div class="row">
+    <span class="lab">solo</span>
+    <span class="badge" style="background:#FEE2E2;color:#B91C1C">Fixe</span>
+    <span class="badge" style="background:#EDE9FE;color:#6D28D9">Mobilier</span>
+    <span class="badge" style="background:#DCFCE7;color:#15803D">Pro vérifié</span>
+    <span class="badge" style="background:#FEF3C7;color:#B45309">Premium</span>
+    <span class="badge" style="background:#E0F2FE;color:#075985">Suggéré IA</span>
+    <span class="badge" style="background:#F0EFFB;color:#4D5461">Neutre</span>
+    <span class="badge" style="background:#F0EFFB;color:#5245ED">Primary</span>
+  </div>
+  <div class="row">
+    <span class="lab">with icon</span>
+    <span class="badge" style="background:#FEE2E2;color:#B91C1C"><i data-lucide="lock"></i></i>Fixe</span>
+    <span class="badge" style="background:#EDE9FE;color:#6D28D9"><i data-lucide="package"></i></i>Mobilier</span>
+    <span class="badge" style="background:#DCFCE7;color:#15803D"><i data-lucide="badge-check"></i></i>Pro</span>
+    <span class="badge" style="background:#FEF3C7;color:#B45309"><i data-lucide="crown"></i></i>Premium</span>
+    <span class="badge" style="background:#E0F2FE;color:#075985"><i data-lucide="sparkles"></i></i>IA</span>
+  </div>
+  <div class="row">
+    <span class="lab">counts</span>
+    <span class="badge" style="background:#7065F0;color:#FFFFFF">3</span>
+    <span class="badge" style="background:#DC2626;color:#FFFFFF">12</span>
+    <span class="badge" style="background:#F0EFFB;color:#000929">99+</span>
+  </div>
+<script src="https://unpkg.com/lucide@0.453.0/dist/umd/lucide.min.js"></script>
+<script>lucide.createIcons({attrs:{width:'1em',height:'1em','stroke-width':1.75}});</script>
+</body>
+</html>
